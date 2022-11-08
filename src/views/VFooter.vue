@@ -33,17 +33,29 @@
           <li class="social-links__item">
             <a
               target="_blank"
-              href="https://www.instagram.com/varley.electra/"><font-awesome-icon icon="fa-brands fa-instagram" size="2x" /></a>
+              href="https://www.instagram.com/varley.electra/"
+            ><font-awesome-icon
+              icon="fa-brands fa-instagram"
+              size="2x"
+            /></a>
           </li>
           <li class="social-links__item">
             <a
               target="_blank"
-              href="https://vk.com/varley_electra"><font-awesome-icon icon="fa-brands fa-vk" size="2x" /></a>
+              href="https://vk.com/varley_electra"
+            ><font-awesome-icon
+              icon="fa-brands fa-vk"
+              size="2x"
+            /></a>
           </li>
           <li class="social-links__item">
             <a
               target="_blank"
-              href="https://github.com/VarleyElectra"><font-awesome-icon icon="fa-brands fa-github" size="2x" /></a>
+              href="https://github.com/VarleyElectra"
+            ><font-awesome-icon
+              icon="fa-brands fa-github"
+              size="2x"
+            /></a>
           </li>
         </ul>
       </div>

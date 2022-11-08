@@ -19,249 +19,253 @@
         <div class="main__grid-settings">
           <h2>Настройки</h2>
 
-          <div
-            v-for="(shadow, index) in shadowsArr"
-            :key="index"
-            class="flexbox-item__container"
-          >
-            <h3>Тень {{ index + 1 }}</h3>
-            <div class="delete-button-container">
-              <p class="control">
-                <base-delete-button
-                  :id="`delete-button__${index}`"
-                  @deleteElement="deleteShadow"
-                />
-              </p>
-            </div>
+          <transition-group name="element-list">
             <div
-              id="flexbox-item__content__select"
-              class="flexbox-item__content"
+              v-for="(shadow, index) in shadowsArr"
+              :key="index"
+              class="flexbox-item__container"
             >
-              <div class="flexbox-item__div1">
-                inset
-                <div id="flexbox-item__div1-svg" class="tooltip tooltip-settings">
-                  <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                  <span class="tooltiptext">Если ключевое слово inset не указано (по умолчанию), тень будет снаружи элемента (и создаст эффект выпуклости блока).
-                    При наличие ключевого слова inset, тень будет падать внутри блока и создаст эффект вдавленности блока. Inset-тени рисуются в пределах границ элемента (даже прозрачные), поверх фона и за контентом.</span>
+              <h3>Тень {{ index + 1 }}</h3>
+              <div class="delete-button-container">
+                <p class="control">
+                  <base-delete-button
+                    :id="`delete-button__${index}`"
+                    @deleteElement="deleteShadow"
+                  />
+                </p>
+              </div>
+              <div
+                id="flexbox-item__content__select"
+                class="flexbox-item__content"
+              >
+                <div class="flexbox-item__div1">
+                  inset
+                  <div
+                    id="flexbox-item__div1-svg"
+                    class="tooltip tooltip-settings"
+                  >
+                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                    <span class="tooltiptext">Если ключевое слово inset не указано (по умолчанию), тень будет снаружи элемента (и создаст эффект выпуклости блока).
+                      При наличие ключевого слова inset, тень будет падать внутри блока и создаст эффект вдавленности блока. Inset-тени рисуются в пределах границ элемента (даже прозрачные), поверх фона и за контентом.</span>
+                  </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p
+                    id="first-control"
+                    class="contol"
+                  >
+                    <span class="select">
+                      <select
+                        v-model="shadow[0]"
+                        aria-label="Grid Template Columns"
+                      >
+                        <option value="no">no</option>
+                        <option value="yes">yes</option>
+                      </select>
+                    </span>
+                  </p>
                 </div>
               </div>
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    offset-x
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Существуют 2 значения, которые устанавливают смещение тени. offset-x определяет горизонтальное расстояние. Отрицательные значения располагают тень слева от элемента.</span>
+                    </div>
+                  </div>
+                </div>
 
-              <div class="flexbox-item__div2">
-                <p
-                  id="first-control"
-                  class="contol"
-                >
-                  <span class="select">
-                    <select
-                      v-model="shadow[0]"
-                      aria-label="Grid Template Columns"
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[1]"
+                      type="number"
+                      min="-100"
+                      max="100"
                     >
-                      <option value="no">no</option>
-                      <option value="yes">yes</option>
-                    </select>
-                  </span>
-                </p>
+                    <span>px</span>
+                  </p>
+                </div>
+
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="shadow[1]"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      class="control__range-input"
+                    >
+                  </p>
+                </div>
               </div>
-            </div>
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  offset-x
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Существуют 2 значения, которые устанавливают смещение тени. offset-x определяет горизонтальное расстояние. Отрицательные значения располагают тень слева от элемента.</span>
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    offset-y
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Существуют 2 значения length, которые устанавливают смещение тени. offset-y определяет вертикальное расстояние. Отрицательные значения располагают тень выше элемента.</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[2]"
+                      type="number"
+                      min="-100"
+                      max="100"
+                    >
+                    <span>px</span>
+                  </p>
+                </div>
+
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="shadow[2]"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      class="control__range-input"
+                    >
+                  </p>
                 </div>
               </div>
 
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[1]"
-                    type="number"
-                    min="-100"
-                    max="100"
-                  >
-                  <span>px</span>
-                </p>
-              </div>
-
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="shadow[1]"
-                    type="range"
-                    min="-100"
-                    max="100"
-                    class="control__range-input"
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  offset-y
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Существуют 2 значения length, которые устанавливают смещение тени. offset-y определяет вертикальное расстояние. Отрицательные значения располагают тень выше элемента.</span>
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    blur-radius
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Чем больше это значение, тем больше и светлее размытие тени. Отрицательные значения не поддерживаются. Если не определено, будет использоваться 0 (резкий край тени).</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[2]"
-                    type="number"
-                    min="-100"
-                    max="100"
-                  >
-                  <span>px</span>
-                </p>
-              </div>
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[3]"
+                      type="number"
+                      min="0"
+                      max="100"
+                    >
+                    <span>px</span>
+                  </p>
+                </div>
 
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="shadow[2]"
-                    type="range"
-                    min="-100"
-                    max="100"
-                    class="control__range-input"
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  blur-radius
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Чем больше это значение, тем больше и светлее размытие тени. Отрицательные значения не поддерживаются. Если не определено, будет использоваться 0 (резкий край тени).</span>
-                  </div>
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="shadow[3]"
+                      type="range"
+                      min="0"
+                      max="100"
+                      class="control__range-input"
+                    >
+                  </p>
                 </div>
               </div>
-
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[3]"
-                    type="number"
-                    min="0"
-                    max="100"
-                  >
-                  <span>px</span>
-                </p>
-              </div>
-
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="shadow[3]"
-                    type="range"
-                    min="0"
-                    max="100"
-                    class="control__range-input"
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  spread-radius
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Положительные значения увеличивают тень, отрицательные - сжимают. По умолчанию значение равно 0 (размер тени равен размеру элемента).</span>
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    spread-radius
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Положительные значения увеличивают тень, отрицательные - сжимают. По умолчанию значение равно 0 (размер тени равен размеру элемента).</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[4]"
-                    type="number"
-                    min="-100"
-                    max="100"
-                  >
-                  <span>px</span>
-                </p>
-              </div>
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[4]"
+                      type="number"
+                      min="-100"
+                      max="100"
+                    >
+                    <span>px</span>
+                  </p>
+                </div>
 
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="shadow[4]"
-                    type="range"
-                    min="-100"
-                    max="100"
-                    class="control__range-input"
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  transparent
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Параметр transparent позволяет настроить прозрачность цвета тени</span>
-                  </div>
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="shadow[4]"
+                      type="range"
+                      min="-100"
+                      max="100"
+                      class="control__range-input"
+                    >
+                  </p>
                 </div>
               </div>
-
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[5]"
-                    type="number"
-                    step="0.1"
-                    min="0.0"
-                    max="1.0"
-                  >
-                </p>
-              </div>
-
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="shadow[5]"
-                    type="range"
-                    step="0.005"
-                    min="0.0"
-                    max="1.0"
-                    class="control__range-input"
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="flexbox-item__content__select">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  shadow color
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Свойство, позволяющее задать цвет для тени.</span>
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    transparent
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Параметр transparent позволяет настроить прозрачность цвета тени</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="shadow[6]"
-                    type="color"
-                  >
-                </p>
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[5]"
+                      type="number"
+                      step="0.1"
+                      min="0.0"
+                      max="1.0"
+                    >
+                  </p>
+                </div>
+
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="shadow[5]"
+                      type="range"
+                      step="0.005"
+                      min="0.0"
+                      max="1.0"
+                      class="control__range-input"
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="flexbox-item__content__select">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    shadow color
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Свойство, позволяющее задать цвет для тени.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="shadow[6]"
+                      type="color"
+                    >
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-
+          </transition-group>
           <div class="add-new-element-button-container">
             <base-button
               @click="addNewShadow"

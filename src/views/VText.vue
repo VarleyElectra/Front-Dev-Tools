@@ -387,7 +387,7 @@ export default {
 
 <style lang="scss" scoped>
 .working-area__cell {
-  box-shadow: 8px 8px 8px 8px $shadowColor;
+  box-shadow: 4px 4px 4px 4px $shadowColor;
   background-color: #fff;
 
   textarea {

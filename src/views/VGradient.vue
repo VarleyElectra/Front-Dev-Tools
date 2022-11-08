@@ -183,54 +183,56 @@
             </div>
           </div>
 
-          <div
-            v-for="(color, index) in gradientColors"
-            :key="index"
-            class="gradient-settings__grid-container"
-          >
-            <div class="delete-button-container">
-              <p class="control">
-                <base-delete-button
-                  :id="`delete-button__${index}`"
-                  @deleteElement="deleteColor"
-                />
-              </p>
-            </div>
-            <div class="gradient-settings__item1">
-              <div class="settings__grid-text">
-                цвет №{{ index + 1 }}
+          <transition-group name="element-list">
+            <div
+              v-for="(color, index) in gradientColors"
+              :key="index"
+              class="gradient-settings__grid-container"
+            >
+              <div class="delete-button-container">
+                <p class="control">
+                  <base-delete-button
+                    :id="`delete-button__${index}`"
+                    @deleteElement="deleteColor"
+                  />
+                </p>
+              </div>
+              <div class="gradient-settings__item1">
+                <div class="settings__grid-text">
+                  цвет №{{ index + 1 }}
+                </div>
+              </div>
+              <div class="gradient-settings__item2">
+                <p class="control">
+                  <input
+                    v-model="gradientValues[index]"
+                    type="number"
+                    min="0"
+                    max="100"
+                  >
+                </p>
+              </div>
+              <div class="gradient-settings__item3">
+                <p class="control">
+                  <input
+                    v-model="gradientColors[index]"
+                    type="color"
+                  >
+                </p>
+              </div>
+              <div class="gradient-settings__item4">
+                <p class="control">
+                  <input
+                    v-model="gradientValues[index]"
+                    type="range"
+                    min="0"
+                    max="100"
+                    class="control__range-input"
+                  >
+                </p>
               </div>
             </div>
-            <div class="gradient-settings__item2">
-              <p class="control">
-                <input
-                  v-model="gradientValues[index]"
-                  type="number"
-                  min="0"
-                  max="100"
-                >
-              </p>
-            </div>
-            <div class="gradient-settings__item3">
-              <p class="control">
-                <input
-                  v-model="gradientColors[index]"
-                  type="color"
-                >
-              </p>
-            </div>
-            <div class="gradient-settings__item4">
-              <p class="control">
-                <input
-                  v-model="gradientValues[index]"
-                  type="range"
-                  min="0"
-                  max="100"
-                  class="control__range-input"
-                >
-              </p>
-            </div>
-          </div>
+          </transition-group>
 
           <div class="add-new-element-button-container">
             <base-button 
@@ -538,5 +540,25 @@ export default {
     grid-template-columns: 1fr 2fr;
     margin-top: 1.5vw;
     margin-bottom: 1vw;
+}
+
+.shadow-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.shadow-list-enter-active,
+.shadow-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.shadow-list-enter-from,
+.shadow-list-leave-to {
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.shadow-list-move {
+  transition: transform 0.4s ease;
 }
 </style>

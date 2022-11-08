@@ -176,128 +176,129 @@
               </div>
             </div>
           </div>
-
-
-          <div
-            v-for="(flexItem, index) in flexBoxesArray"
-            :key="index"
-            class="flexbox-item__container"
-          >
-            <h3>Элемент №{{ index + 1 }}</h3>
-            <div class="delete-button-container">
-              <p class="control">
-                <base-delete-button
-                  :id="`delete-button__${index}`"
-                  @deleteElement="deleteFlexItem"
-                />
-              </p>
-            </div>
-
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  order
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">CSS свойство  order определяет порядок, используемый для размещения flex элементов в их flex контейнере. Элементы располагаются в восходящем порядке по значению order. Элементы с одинаковым значением order  располагаются в том порядке, в каком они находятся в исходном коде.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="flexItem[0]"
-                    type="number"
-                    min="0"
-                  >
-                </p>
-              </div>
-            </div>
-
-            <div class="flexbox-item__content">
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  flex
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Свойство flex: <br>
-                      flex-grow: определяет как много свободного пространства во flex-контейнере должно быть назначено
-                      текущему элементу<br>
-                      flex-shrink: определяет коэффициент сжатия flex-элемента.<br>
-                      flex-basis: задаёт базовый размер флекс элемента по основной оси. Это свойство определяет размер
-                      контент-бокса, если не задано иначе через box-sizing.</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="flexbox-item__div2">
-                <p class="control">
-                  <input
-                    v-model="flexItem[1]"
-                    type="number"
-                    min="0"
-                  >
-                </p>
-              </div>
-
-              <div class="flexbox-item__div3">
-                <p class="control">
-                  <input
-                    v-model="flexItem[2]"
-                    type="number"
-                    min="0"
-                  >
-                </p>
-              </div>
-
-              <div class="flexbox-item__div4">
-                <p class="control">
-                  <input
-                    v-model="flexItem[3]"
-                    type="text"
-                    min="0"
-                  >
-                </p>
-              </div>
-            </div>
-
+          
+          <transition-group name="element-list">
             <div
-              id="flexbox__input"
-              class="flexbox-item__content"
+              v-for="(flexItem, index) in flexBoxesArray"
+              :key="index"
+              class="flexbox-item__container"
             >
-              <div class="flexbox-item__div1">
-                <div class="settings__grid-text">
-                  align-self
-                  <div class="tooltip tooltip-settings">
-                    <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-                    <span class="tooltiptext">Свойство CSS align-self выравнивает flex-элементы по текущей flex-линии, переопределяя значение свойства align-items. Если у какого-либо flex-элемента margin в поперечной оси выставлен в auto, то align-self игнорируется.</span>
+              <h3>Элемент №{{ index + 1 }}</h3>
+              <div class="delete-button-container">
+                <p class="control">
+                  <base-delete-button
+                    :id="`delete-button__${index}`"
+                    @deleteElement="deleteFlexItem"
+                  />
+                </p>
+              </div>
+
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    order
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">CSS свойство  order определяет порядок, используемый для размещения flex элементов в их flex контейнере. Элементы располагаются в восходящем порядке по значению order. Элементы с одинаковым значением order  располагаются в том порядке, в каком они находятся в исходном коде.</span>
+                    </div>
                   </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="flexItem[0]"
+                      type="number"
+                      min="0"
+                    >
+                  </p>
                 </div>
               </div>
 
-              <div class="flexbox-item__div2">
-                <p
-                  id="flexbox__control"
-                  class="contol"
-                >
-                  <span class="select-vflex">
-                    <select
-                      v-model="flexItem[4]"
-                      aria-label="Grid Template Columns"
+              <div class="flexbox-item__content">
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    flex
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Свойство flex: <br>
+                        flex-grow: определяет как много свободного пространства во flex-контейнере должно быть назначено
+                        текущему элементу<br>
+                        flex-shrink: определяет коэффициент сжатия flex-элемента.<br>
+                        flex-basis: задаёт базовый размер флекс элемента по основной оси. Это свойство определяет размер
+                        контент-бокса, если не задано иначе через box-sizing.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p class="control">
+                    <input
+                      v-model="flexItem[1]"
+                      type="number"
+                      min="0"
                     >
-                      <option value="auto">auto</option>
-                      <option value="flex-start">flex-start</option>
-                      <option value="flex-end">flex-end</option>
-                      <option value="center">center</option>
-                      <option value="baseline">baseline</option>
-                      <option value="stretch">stretch</option>
-                    </select>
-                  </span>
-                </p>
+                  </p>
+                </div>
+
+                <div class="flexbox-item__div3">
+                  <p class="control">
+                    <input
+                      v-model="flexItem[2]"
+                      type="number"
+                      min="0"
+                    >
+                  </p>
+                </div>
+
+                <div class="flexbox-item__div4">
+                  <p class="control">
+                    <input
+                      v-model="flexItem[3]"
+                      type="text"
+                      min="0"
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <div
+                id="flexbox__input"
+                class="flexbox-item__content"
+              >
+                <div class="flexbox-item__div1">
+                  <div class="settings__grid-text">
+                    align-self
+                    <div class="tooltip tooltip-settings">
+                      <font-awesome-icon icon="fa-solid fa-clipboard-question" />
+                      <span class="tooltiptext">Свойство CSS align-self выравнивает flex-элементы по текущей flex-линии, переопределяя значение свойства align-items. Если у какого-либо flex-элемента margin в поперечной оси выставлен в auto, то align-self игнорируется.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flexbox-item__div2">
+                  <p
+                    id="flexbox__control"
+                    class="contol"
+                  >
+                    <span class="select-vflex">
+                      <select
+                        v-model="flexItem[4]"
+                        aria-label="Grid Template Columns"
+                      >
+                        <option value="auto">auto</option>
+                        <option value="flex-start">flex-start</option>
+                        <option value="flex-end">flex-end</option>
+                        <option value="center">center</option>
+                        <option value="baseline">baseline</option>
+                        <option value="stretch">stretch</option>
+                      </select>
+                    </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </transition-group>
 
           <div class="add-new-element-button-container">
             <base-button

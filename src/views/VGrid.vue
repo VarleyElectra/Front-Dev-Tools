@@ -92,45 +92,46 @@
                 </h2>
               </div>
 
-              <div
-                v-for="(colArr, index) in gridTemplateColumnsArr"
-                :key="index"
-                class="control-panel__control-field"
-              >
-                <p class="control-text">
-                  Column {{ index + 1 }}
-                </p>
-                <p class="control">
-                  <input
-                    v-model="colArr[0]"
-                    type="number"
-                    min="1"
-                  >
-                </p>
-                <p class="contol">
-                  <span class="select">
-                    <select
-                      v-model="colArr[1]"
-                      aria-label="Grid Template Columns"
-                    >
-                      <option value="px">px</option>
-                      <option value="fr">fr</option>
-                      <option value="%">%</option>
-                      <option value="auto">auto</option>
-                    </select>
-                  </span>
-                </p>
-                <div class="delete-button-container">
-                  <p class="control">
-                    <base-delete-button
-                      :id="`delete-button__${index}`"
-                      data-type="column"
-                      @deleteElement="deleteItem"
-                    />
+              <transition-group name="element-list">
+                <div
+                  v-for="(colArr, index) in gridTemplateColumnsArr"
+                  :key="index"
+                  class="control-panel__control-field"
+                >
+                  <p class="control-text">
+                    Column {{ index + 1 }}
                   </p>
+                  <p class="control">
+                    <input
+                      v-model="colArr[0]"
+                      type="number"
+                      min="1"
+                    >
+                  </p>
+                  <p class="contol">
+                    <span class="select">
+                      <select
+                        v-model="colArr[1]"
+                        aria-label="Grid Template Columns"
+                      >
+                        <option value="px">px</option>
+                        <option value="fr">fr</option>
+                        <option value="%">%</option>
+                        <option value="auto">auto</option>
+                      </select>
+                    </span>
+                  </p>
+                  <div class="delete-button-container">
+                    <p class="control">
+                      <base-delete-button
+                        :id="`delete-button__${index}`"
+                        data-type="column"
+                        @deleteElement="deleteItem"
+                      />
+                    </p>
+                  </div>
                 </div>
-              </div>
-
+              </transition-group>
               <div
                 id="add-new-column"
                 class="add-new-element-button-container"
@@ -158,45 +159,46 @@
                 </h2>
               </div>
 
-              <div
-                v-for="(rowArr, index) in gridTemplateRowsArr"
-                :key="index"
-                class="control-panel__control-field"
-              >
-                <p class="control-text">
-                  Row {{ index + 1 }}
-                </p>
-                <p class="control">
-                  <input
-                    v-model="rowArr[0]"
-                    type="number"
-                    min="1"
-                  >
-                </p>
-                <p class="contol">
-                  <span class="select">
-                    <select
-                      v-model="rowArr[1]"
-                      aria-label="Grid Template Columns"
-                    >
-                      <option value="px">px</option>
-                      <option value="fr">fr</option>
-                      <option value="%">%</option>
-                      <option value="auto">auto</option>
-                    </select>
-                  </span>
-                </p>
-                <div class="delete-button-container">
-                  <p class="control">
-                    <base-delete-button
-                      :id="`delete-button__${index}`"
-                      data-type="row"
-                      @deleteElement="deleteItem"
-                    />
+              <transition-group name="element-list">
+                <div
+                  v-for="(rowArr, index) in gridTemplateRowsArr"
+                  :key="index"
+                  class="control-panel__control-field"
+                >
+                  <p class="control-text">
+                    Row {{ index + 1 }}
                   </p>
+                  <p class="control">
+                    <input
+                      v-model="rowArr[0]"
+                      type="number"
+                      min="1"
+                    >
+                  </p>
+                  <p class="contol">
+                    <span class="select">
+                      <select
+                        v-model="rowArr[1]"
+                        aria-label="Grid Template Columns"
+                      >
+                        <option value="px">px</option>
+                        <option value="fr">fr</option>
+                        <option value="%">%</option>
+                        <option value="auto">auto</option>
+                      </select>
+                    </span>
+                  </p>
+                  <div class="delete-button-container">
+                    <p class="control">
+                      <base-delete-button
+                        :id="`delete-button__${index}`"
+                        data-type="row"
+                        @deleteElement="deleteItem"
+                      />
+                    </p>
+                  </div>
                 </div>
-              </div>
-
+              </transition-group>
               <div class="add-new-element-button-container">
                 <base-button
                   @click="addNewRow"
