@@ -393,141 +393,142 @@
 </template>
 
 <script>
-    import BaseCodeField from "@/components/UI/BaseCodeField";
-    export default {
-        name: "VFilter",
-      components: {BaseCodeField},
-      data() {
-        return {
-          filterBlur: "0",
-          filterBrightness: "100",
-          filterContrast: "100",
-          filterGrayscale: "0",
-          filterHueRotate: "0",
-          filterInvert: "0",
-          filterOpacity: "100",
-          filterSaturate: "100",
-          filterSepia: "0",
-        }
-      },
-
-      computed: {
-          filterString() {
-            return `blur(${this.filterBlur}px)
-            brightness(${this.filterBrightness}%)
-            contrast(${this.filterContrast}%)
-            grayscale(${this.filterGrayscale}%)
-            hue-rotate(${this.filterHueRotate}deg)
-            invert(${this.filterInvert}%)
-            opacity(${this.filterOpacity}%)
-            saturate(${this.filterSaturate}%)
-            sepia(${this.filterSepia}%)`
-          }
-      },
-      methods: {
-        loadFile(event) {
-          let image = document.getElementById('myImage');
-          image.src = URL.createObjectURL(event.target.files[0]);
-          this.filterBlur = "0";
-          this.filterBrightness = "100";
-          this.filterContrast = "100";
-          this.filterGrayscale = "0";
-          this.filterHueRotate = "0";
-          this.filterInvert = "0";
-          this.filterOpacity = "100";
-          this.filterSaturate = "100";
-          this.filterSepia = "0";
-        },
-      }
+import BaseCodeField from "@/components/UI/BaseCodeField";
+export default {
+  name: "VFilter",
+  components: {BaseCodeField},
+  data() {
+    return {
+      filterBlur: "0",
+      filterBrightness: "100",
+      filterContrast: "100",
+      filterGrayscale: "0",
+      filterHueRotate: "0",
+      filterInvert: "0",
+      filterOpacity: "100",
+      filterSaturate: "100",
+      filterSepia: "0",
     }
+  },
+  computed: {
+      filterString() {
+        return `blur(${this.filterBlur}px)
+        brightness(${this.filterBrightness}%)
+        contrast(${this.filterContrast}%)
+        grayscale(${this.filterGrayscale}%)
+        hue-rotate(${this.filterHueRotate}deg)
+        invert(${this.filterInvert}%)
+        opacity(${this.filterOpacity}%)
+        saturate(${this.filterSaturate}%)
+        sepia(${this.filterSepia}%)`
+      }
+  },
+  methods: {
+    loadFile(event) {
+      let image = document.getElementById('myImage');
+      image.src = URL.createObjectURL(event.target.files[0]);
+      this.filterBlur = "0";
+      this.filterBrightness = "100";
+      this.filterContrast = "100";
+      this.filterGrayscale = "0";
+      this.filterHueRotate = "0";
+      this.filterInvert = "0";
+      this.filterOpacity = "100";
+      this.filterSaturate = "100";
+      this.filterSepia = "0";
+    },
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .upload-image__container {
-    display: inline-block;
-    position: absolute;
-    right: 25px;
-    top: 15px;
-    i {
-      position: relative;
-    }
+.upload-image__container {
+  display: inline-block;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  i {
+    position: relative;
   }
+}
 
-  .working-area__cell {
-    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.4);
-    border: 1px solid #000;
-    max-width: 45vw;
-    max-height: 35vw;
-    overflow: hidden;
-  }
+.working-area__cell {
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.4);
+  border: 1px solid #000;
+  max-width: 45vw;
+  max-height: 35vw;
+  overflow: hidden;
+}
 
- .flexbox-item__content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 30px);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    margin: 15px 5px;
-  }
-  .flexbox-item__content__select {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30px;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    margin: 15px 5px;
-  }
+.flexbox-item__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 30px);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin: 15px 5px;
+}
 
-  .flexbox-item__div1 {
-    grid-area: 1 / 1 / 2 / 3;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.flexbox-item__content__select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 30px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin: 15px 5px;
+}
+
+.flexbox-item__div1 {
+  grid-area: 1 / 1 / 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+
+.input__percent-value::after {
+  content: "%";
+  background-color: #000;
+  font-size: 0.8vw;
+}
+
+.upload-image__container {
+  display: inline-block;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+.upload-image__label {
+  width: 15vw;
+  min-height: 2vw;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1vw;
+  line-height: 2vw;
+  transition: 1s;
+  display: flex;
+  border: 2px solid #000;
+  align-items: center;
+  svg {
     margin-left: 5px;
+    margin-right: 5px;
+    height: 25px;
   }
+}
 
-  .input__percent-value::after {
-    content: "%";
-    background-color: #000;
-    font-size: 0.8vw;
-  }
-  .upload-image__container {
-    display: inline-block;
-    position: absolute;
-    right: 15px;
-    top: 15px;
-  }
-  .upload-image__label {
-    width: 15vw;
-    min-height: 2vw;
-    border-radius: 4px;
-    text-align: center;
-    cursor: pointer;
-    font-size: 1vw;
-    line-height: 2vw;
-    transition: 1s;
-    display: flex;
-    border: 2px solid #000;
-    align-items: center;
-    svg {
-      margin-left: 5px;
-      margin-right: 5px;
-      height: 25px;
-    }
-  }
+.upload-image__label:hover {
+  color: $mainBlueColor;
+  background-color: #fff;
+}
 
-  .upload-image__label:hover {
-    color: #331bcf;
-    background-color: #fff;
-  }
-
-  .upload-image__input {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
-
+.upload-image__input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
 </style>

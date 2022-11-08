@@ -361,174 +361,180 @@
 </template>
 
 <script>
-    import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
-    import BaseButton from "@/components/UI/BaseButton";
-    import BaseCodeField from "@/components/UI/BaseCodeField";
-    export default {
-        name: "VFlexbox",
-        components: {BaseCodeField, BaseButton, BaseDeleteButton},
-        data() {
-            return {
-                flexDirection: "row",
-                flexWrap: "nowrap",
-                justifyContent: "flex-start",
-                alignItems: "flex-start",
-                alignContent: "flex-start",
-                flexBoxesArray: [
-                    ["0", "0", "0", "auto", "auto"],
-                    ["0", "0", "0", "auto", "auto"],
-                    ["0", "0", "0", "auto", "auto"],
-                    ["0", "0", "0", "auto", "auto"],
-                ]
-            }
+import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
+import BaseButton from "@/components/UI/BaseButton";
+import BaseCodeField from "@/components/UI/BaseCodeField";
+export default {
+    name: "VFlexbox",
+    components: {BaseCodeField, BaseButton, BaseDeleteButton},
+    data() {
+        return {
+            flexDirection: "row",
+            flexWrap: "nowrap",
+            justifyContent: "flex-start",
+            alignItems: "flex-start",
+            alignContent: "flex-start",
+            flexBoxesArray: [
+                ["0", "0", "0", "auto", "auto"],
+                ["0", "0", "0", "auto", "auto"],
+                ["0", "0", "0", "auto", "auto"],
+                ["0", "0", "0", "auto", "auto"],
+            ]
+        }
+    },
+    methods: {
+        addNewFlexItem() {
+            this.flexBoxesArray.push(["0", "0", "0", "auto", "auto"])
         },
 
-        methods: {
-            addNewFlexItem() {
-                this.flexBoxesArray.push(["0", "0", "0", "auto", "auto"])
-            },
-
-            deleteFlexItem({id}) {
-                this.flexBoxesArray.splice(id, 1);
-            },
-        }
+        deleteFlexItem({id}) {
+            this.flexBoxesArray.splice(id, 1);
+        },
     }
+}
 </script>
 
 <style lang="scss" scoped>
-    .settings__grid-text-top {
-        height: 2vw;
-        line-height: 2vw;
-        padding-right: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-left: 5px;
-    }
-    .control__container {
-        .control {
-            padding-right: 15px;
-            color: #fff;
-        }
-    }
+.settings__grid-text-top {
+    height: 2vw;
+    line-height: 2vw;
+    padding-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5px;
+}
 
-    .main__working-area__flex-vflex {
-        display: flex;
-        min-height: 88%;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        align-content: flex-start;
-        align-items: flex-start;
-        margin: 50px;
-    }
-
-    .working-area__cell {
-        box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
-        background-color: #fff;
-        width: 7.5vw;
-        height: 7.5vw;
-        padding: 5px;
-        overflow: hidden;
-    }
-
-    .control-panel__info-field {
-        padding-bottom: 10px;
-        h2 {
-            font-size: 1.5vw;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-    }
-
-    .control-panel__info-field::before {
-        content: " ";
-        width: 75%;
-        text-align: center;
-        height: 1px;
-        display: block;
-        margin: 0 auto 10px;
-        background-color: #000;
-    }
-
-    .grid-settings__control-panel {
-        padding: 1em 0;
-    }
-
-    .control-panel__container:last-child {
-        margin-bottom: -10px;
-    }
-
+.control__container {
     .control {
-        position: relative;
-        text-align: left;
-        display: block;
-        height: 2vw;
-        margin: 5px;
+        padding-right: 15px;
+        color: #fff;
     }
-    .select-vflex {
-        display: inline-block;
-        position: relative;
-        vertical-align: top;
-        box-shadow: inset 0 1px 2px hsla(0, 0%, 4%, 0.1);
-        height: 2vw;
-        margin-right: 20px;
-        width: 100%;
-        select {
-          line-height: 1;
-          box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
-          height: 100%;
-          width: 100%;
-        }
-    }
+}
 
-    .settings__grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-column-gap: 0;
-        grid-row-gap: 0;
-        margin: 10px;
-    }
+.main__working-area__flex-vflex {
+    display: flex;
+    min-height: 88%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin: 50px;
+}
 
-    .div1 {
-        grid-area: 1 / 1 / 2 / 2;
-    }
-    .div2 {
-        grid-area: 1 / 2 / 2 / 3;
-    }
+.working-area__cell {
+    box-shadow: 0 0 0 1px $shadowColor;
+    background-color: #fff;
+    width: 7.5vw;
+    height: 7.5vw;
+    padding: 5px;
+    overflow: hidden;
+}
 
-    .flexbox-item__content{
-        display: grid;
-        grid-template-columns: 4fr repeat(3, 3fr);
-        grid-template-rows: 1fr;
-        grid-column-gap: 0;
-        grid-row-gap: 0;
+.control-panel__info-field {
+    padding-bottom: 10px;
+    h2 {
+        font-size: 1.5vw;
+        margin-bottom: 10px;
+        text-align: center;
     }
+}
 
-    .flexbox-item__div1 {
-        grid-area: 1 / 1 / 2 / 2;
-        display: flex;
-        align-items: center;
-        min-width: 90px;
-    }
-    .flexbox-item__div2 {
-        grid-area: 1 / 2 / 2 / 3;
-    }
-    .flexbox-item__div3 {
-        grid-area: 1 / 3 / 2 / 4;
-    }
-    .flexbox-item__div4 {
-        grid-area: 1 / 4 / 2 / 5;
-    }
-    .flexbox-item__div5 {
-        grid-area: 1 / 5 / 2 / 6;
-    }
+.control-panel__info-field::before {
+    content: " ";
+    width: 75%;
+    text-align: center;
+    height: 1px;
+    display: block;
+    margin: 0 auto 10px;
+    background-color: #000;
+}
 
-    #flexbox__input {
-        grid-template-columns: 4fr 9fr;
-    }
+.grid-settings__control-panel {
+    padding: 1em 0;
+}
 
-    #flexbox__control {
-        padding: 5px;
+.control-panel__container:last-child {
+    margin-bottom: -10px;
+}
+
+.control {
+    position: relative;
+    text-align: left;
+    display: block;
+    height: 2vw;
+    margin: 5px;
+}
+
+.select-vflex {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    box-shadow: inset 0 1px 2px hsla(0, 0%, 4%, 0.1);
+    height: 2vw;
+    margin-right: 20px;
+    width: 100%;
+    select {
+      line-height: 1;
+      box-shadow: 0 0 0 1px $shadowColor;
+      height: 100%;
+      width: 100%;
     }
+}
+
+.settings__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    margin: 10px;
+}
+
+.div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+.div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.flexbox-item__content{
+    display: grid;
+    grid-template-columns: 4fr repeat(3, 3fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+}
+
+.flexbox-item__div1 {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    align-items: center;
+    min-width: 90px;
+}
+
+.flexbox-item__div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+.flexbox-item__div3 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.flexbox-item__div4 {
+    grid-area: 1 / 4 / 2 / 5;
+}
+
+.flexbox-item__div5 {
+    grid-area: 1 / 5 / 2 / 6;
+}
+
+#flexbox__input {
+    grid-template-columns: 4fr 9fr;
+}
+
+#flexbox__control {
+    padding: 5px;
+}
 </style>

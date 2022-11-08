@@ -1,5 +1,6 @@
 @import 'variables.scss';
 @import 'null.scss';
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;1,100&display=swap');
 
 #app {
   display: flex;
@@ -7,13 +8,11 @@
   min-height: 100vh;
 }
 
-//Copied
 main {
   max-width: 80%;
   margin: 50px auto;
 }
 
-//Copied
 .main__container {
   min-height: 600px;
   display: grid;
@@ -23,10 +22,9 @@ main {
   grid-template-areas: "area  settings";
 }
 
-//Copied
 .main__header {
   height: 100px;
-  background-color: #befaff;
+  background-color: $lightBlueColor;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -38,7 +36,7 @@ main {
     cursor: pointer;
   }
   h1:hover {
-    color: #331bcf;
+    color: $mainBlueColor;
   }
   img {
     width: 60px;
@@ -48,7 +46,6 @@ main {
   margin-bottom: 25px;
 }
 
-//Copied
 .main__grid-container {
   position: relative;
   display: inline-block;
@@ -61,14 +58,13 @@ main {
   }
 }
 
-//Copied
 .main__working-area {
   grid-area: area;
-  background-color: #befaff;
+  background-color: $lightBlueColor;
   border: 2px solid #000;
   overflow: auto;
 }
-//Copied
+
 .main__working-area__flex {
   display: flex;
   min-height: 50%;
@@ -80,9 +76,8 @@ main {
   margin: 50px;
 }
 
-//Copied
 .main__grid-settings {
-  background-color: #befaff;
+  background-color: $lightBlueColor;
   border: 2px solid #000;
   min-height: 100%;
   position: relative;
@@ -93,7 +88,7 @@ main {
     text-align: center;
   }
 }
-//Copied
+
 .control {
   position: relative;
   text-align: left;
@@ -113,12 +108,11 @@ main {
     height: 30px;
   }
 }
-//Copied
+
 .tooltip-settings {
   display: inline;
 }
 
-//Copied
 .select {
   display: inline-block;
   position: relative;
@@ -128,19 +122,19 @@ main {
   width: 100%;
   select {
     line-height: 1;
-    box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
+    box-shadow: 0 0 0 1px $shadowColor;
     height: 100%;
     width: 100%;
   }
 }
 
 option {
-  background-color: #befaff;
-  box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
+  background-color: $lightBlueColor;
+  box-shadow: 0 0 0 1px $shadowColor;
 }
 
 option:hover {
-  background-color: #befaff;
+  background-color: $lightBlueColor;
 }
 
 .add-new-element-button-container {
@@ -149,7 +143,6 @@ option:hover {
   display: flex;
 }
 
-//Copied
 .main__code-fields {
   min-height: 300px;
   font-size: 2 * $fontSize;
@@ -161,7 +154,6 @@ option:hover {
   grid-row-gap: 0;
 }
 
-//Copied
 .main__code-fields {
   min-height: 300px;
   font-size: 2 * $fontSize;
@@ -182,13 +174,12 @@ option:hover {
   }
 }
 
-/* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  min-width: 25vw; /* Ширина подсказки */
+  min-width: 25vw;
   top: 0;
-  right: 0; /* Положение подсказки */
-  background: #3989c9;
+  right: 0;
+  background: $lightBlueColor;
   color: #fff;
   text-align: center;
   padding: 7.5px;
@@ -198,22 +189,22 @@ option:hover {
   line-height: 1.25;
   opacity: 0;
   transition: 0.25s;
-  /* Position the tooltip text - see examples below! */
   position: absolute;
 }
 
-/* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
-  opacity: 1; /* Показываем подсказку */
+  opacity: 1;
 }
+
 .settings__grid-text {
   height: 2vw;
   line-height: 2vw;
   grid-area: 1 / 1 / 2 / 3;
 }
+
 .flexbox-item__container {
-  background-color: #4bd1fe;
+  background-color: $subLightBlueColor;
   margin: 10px;
   padding: 10px;
   border-radius: 5px;
@@ -247,11 +238,13 @@ option:hover {
 input[type="number"] {
   width: 100%;
 }
+
 input[type="color"] {
   padding: 2px;
   width: 100%;
   transition: 1s;
 }
+
 input[type="color"]:hover {
   background-color: rgba(255, 255, 255, 0);
   cursor: pointer;

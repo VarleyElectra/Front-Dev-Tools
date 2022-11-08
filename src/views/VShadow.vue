@@ -306,27 +306,27 @@ import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
 import BaseButton from "@/components/UI/BaseButton";
 import BaseCodeField from "@/components/UI/BaseCodeField";
 export default {
-  name: "VShadow",
-  components: {
-    BaseButton,
-    BaseDeleteButton,
-    BaseCodeField
-  },
-  data() {
-        return {
-            shadowsArr: [
-                [
-                    "no",
-                    "4",
-                    "4",
-                    "8",
-                    "0",
-                    "0.4",
-                    "#000000",
-                ],
-            ],
-        }
+    name: "VShadow",
+    components: {
+      BaseButton,
+      BaseDeleteButton,
+      BaseCodeField
     },
+    data() {
+          return {
+              shadowsArr: [
+                  [
+                      "no",
+                      "4",
+                      "4",
+                      "8",
+                      "0",
+                      "0.4",
+                      "#000000",
+                  ],
+              ],
+          }
+      },
     computed: {
       shadowString() {
         let boxShadowCSS = "";
@@ -368,44 +368,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  //Diff for every page
-  .working-area__cell {
-    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.4);
-    background-color: #fff;
-    min-width: 15vw;
-    min-height: 15vw;
-    overflow: hidden;
-  }
+.working-area__cell {
+  box-shadow: 4px 4px 8px 0 $shadowColor;
+  background-color: #fff;
+  min-width: 15vw;
+  min-height: 15vw;
+  overflow: hidden;
+}
 
-  //Different from every page
-  .flexbox-item__content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 30px);
-    grid-column-gap: 10px;
-    grid-row-gap: 0;
-  }
-  .flexbox-item__content__select {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 30px;
-    grid-column-gap: 0;
-    grid-row-gap: 0;
-  }
-  #flexbox-item__content__select {
-    -ms-grid-rows: 30px;
-    grid-template-rows: 30px;
-    margin-top: 1.5vw;
-    margin-bottom: 1vw;
-  }
+.flexbox-item__content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 30px);
+  grid-column-gap: 10px;
+  grid-row-gap: 0;
+}
 
-  .flexbox-item__div1 {
-    grid-area: 1 / 1 / 2 / 3;
-    display: flex;
-    align-items: center;
-    margin-left: 5px;
-  }
-  #flexbox-item__div1-svg {
-    margin-left: 5px;
-  }
+.flexbox-item__content__select {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 30px;
+  grid-column-gap: 0;
+  grid-row-gap: 0;
+}
+
+#flexbox-item__content__select {
+  -ms-grid-rows: 30px;
+  grid-template-rows: 30px;
+  margin-top: 1.5vw;
+  margin-bottom: 1vw;
+}
+
+.flexbox-item__div1 {
+  grid-area: 1 / 1 / 2 / 3;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+#flexbox-item__div1-svg {
+  margin-left: 5px;
+}
 </style>

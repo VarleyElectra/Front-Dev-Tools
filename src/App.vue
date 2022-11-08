@@ -7,17 +7,17 @@
 </template>
 
 <script>
-  import VHeader from "@/views/VHeader";
-  import VFooter from "@/views/VFooter";
-  export default {
+import VHeader from "@/views/VHeader";
+import VFooter from "@/views/VFooter";
+export default {
     name: "App",
     components: {VFooter, VHeader}
-  }
+}
 </script>
 
 <style>
 .app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Exo 2', sans-serif;
   flex: 1 0 auto;
 }
 </style>

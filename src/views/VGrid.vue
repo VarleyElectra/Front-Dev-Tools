@@ -245,74 +245,49 @@
         </template>
       </base-code-field>
     </div>
-    <!--    <p>{{ gridCellsChange() }}</p>-->
   </main>
 </template>
 
 <script>
-  import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
-  import BaseButton from "@/components/UI/BaseButton";
-  import BaseCodeField from "@/components/UI/BaseCodeField";
+import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
+import BaseButton from "@/components/UI/BaseButton";
+import BaseCodeField from "@/components/UI/BaseCodeField";
 
-  export default {
-        name: "VGrid",
-      components: {BaseCodeField, BaseButton, BaseDeleteButton},
-      data() {
-        return {
-          gridColumns: 4,
-          gridRows: 3,
-          columnsGap: "0",
-          rowsGap: "0",
-          gridTemplateColumnsArr: [
-            ["100", "px"],
-            ["100", "px"],
-            ["100", "px"],
-            ["100", "px"],
-          ],
-          gridTemplateRowsArr: [
-            ["100", "px"],
-            ["100", "px"],
-            ["100", "px"],
-          ],
-        }
+export default {
+    name: "VGrid",
+    components: {BaseCodeField, BaseButton, BaseDeleteButton},
+    data() {
+      return {
+        gridColumns: 4,
+        gridRows: 3,
+        columnsGap: "0",
+        rowsGap: "0",
+        gridTemplateColumnsArr: [
+          ["100", "px"],
+          ["100", "px"],
+          ["100", "px"],
+          ["100", "px"],
+        ],
+        gridTemplateRowsArr: [
+          ["100", "px"],
+          ["100", "px"],
+          ["100", "px"],
+        ],
+      }
+    },
+    computed: {
+      gridTemplateColumnString() {
+        return this.gridTemplateColumnsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
       },
-      computed: {
-        gridTemplateColumnString() {
-          return this.gridTemplateColumnsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
-        },
-        gridTemplateRowString() {
-          return this.gridTemplateRowsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
-        },
-        cells() {
-          return Number(this.gridColumns) * Number(this.gridRows);
-        },
-        // gridTemplateColumnsArr() {
-        //   let columnsArrLength = Number(this.gridColumns);
-        //   let columnsArr= [];
-        //
-        //   while (this.gridTemplateColumnsArr.length !== columnsArrLength) {
-        //     if (this.gridTemplateColumnsArr.length < columnsArrLength) {
-        //       columnsArr.push(["100", "px"]);
-        //     } else {
-        //       columnsArr.pop();
-        //     }
-        //   }
-        //   return columnsArr;
-        // },
-        // gridTemplateRowsArr() {
-        //   let rowsArrLength = Number(this.gridRows);
-        //   let rowsArr= [];
-        //
-        //   while (this.gridTemplateRowsArr.length !== rowsArrLength) {
-        //     if (this.gridTemplateRowsArr.length < rowsArrLength) {
-        //       rowsArr.push(["100", "px"]);
-        //     } else {
-        //       rowsArr.pop();
-        //     }
-        //   }
-        //   return rowsArr;
-        // }
+
+      gridTemplateRowString() {
+        return this.gridTemplateRowsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
       },
+
+      cells() {
+        return Number(this.gridColumns) * Number(this.gridRows);
+      },
+    },
     watch: {
       gridColumns() {
         let columnsArrLength = Number(this.gridColumns);
@@ -324,6 +299,7 @@
           }
         }
       },
+
       gridRows() {
         let rowsArrLength = Number(this.gridRows);
         while (this.gridTemplateRowsArr.length !== rowsArrLength) {
@@ -335,167 +311,155 @@
         }
       }
     },
+    methods: {
+      addNewColumn() {
+        this.gridTemplateColumnsArr.push(["100", "px"]);
+        this.gridColumns += 1;
+      },
 
-      methods: {
-        addNewColumn() {
-          this.gridTemplateColumnsArr.push(["100", "px"]);
-          this.gridColumns += 1;
-        },
+      addNewRow() {
+        this.gridTemplateRowsArr.push(["100", "px"]);
+        this.gridRows += 1;
+      },
 
-        addNewRow() {
-          this.gridTemplateRowsArr.push(["100", "px"]);
-          this.gridRows += 1;
-        },
+      deleteItem({id, target}) {
+        let button = target.closest('.delete-button')
+        let type = button.dataset.type;
 
-        deleteItem({id, target}) {
-          let button = target.closest('.delete-button')
-          let type = button.dataset.type;
-
-          switch (type) {
-            case 'row':
-              this.gridTemplateRowsArr.splice(id, 1);
-              this.gridRows -= 1;
-              break;
-            case 'column':
-              this.gridTemplateColumnsArr.splice(id, 1);
-              this.gridColumns -= 1;
-              break;
-            default:
-              break;
-          }
-        },
-      }
+        switch (type) {
+          case 'row':
+            this.gridTemplateRowsArr.splice(id, 1);
+            this.gridRows -= 1;
+            break;
+          case 'column':
+            this.gridTemplateColumnsArr.splice(id, 1);
+            this.gridColumns -= 1;
+            break;
+          default:
+            break;
+        }
+      },
     }
+}
 </script>
 
 <style lang="scss" scoped>
-    .main__working-area__grid {
-        display: grid;
-        min-height: 88%;
-        grid-template-rows: repeat(3, 100px);
-        grid-template-columns: repeat(4, 100px);
-        margin: 50px;
-    }
+.main__working-area__grid {
+    display: grid;
+    min-height: 88%;
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(4, 100px);
+    margin: 50px;
+}
 
-    .working-area__cell {
-        box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
-        background-color: #fff;
-        overflow: hidden;
-    }
+.working-area__cell {
+    box-shadow: 0 0 0 1px $shadowColor;
+    background-color: #fff;
+    overflow: hidden;
+}
 
-    .grid-settings__fieldset {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px;
-      transition: 1s;
-      border: 1px solid transparent;
-      margin: 0 10px 10px;
-        label {
-            padding-right: 5px;
-            padding-left: 1em;
-        }
-        input {
-            height: 1.75em;
-            box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
-            max-width: 40%;
-        }
+.grid-settings__fieldset {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  transition: 1s;
+  border: 1px solid transparent;
+  margin: 0 10px 10px;
+    label {
+        padding-right: 5px;
+        padding-left: 1em;
     }
-
-    .grid-settings__fieldset:nth-child(1) {
-        margin-top: 15px;
+    input {
+        height: 1.75em;
+        box-shadow: 0 0 0 1px $shadowColor;
+        max-width: 40%;
     }
+}
 
-    .grid-settings__fieldset:hover {
-        background-color: #fff;
-        border: 1px solid #000;
-    }
+.grid-settings__fieldset:nth-child(1) {
+    margin-top: 15px;
+}
 
-    .control-panel__info-field {
-        padding-bottom: 10px;
-        h2 {
-            font-size: 1.5vw;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-    }
+.grid-settings__fieldset:hover {
+    background-color: #fff;
+    border: 1px solid #000;
+}
 
-    .control-panel__info-field::before {
-        content: " ";
-        width: 75%;
-        text-align: center;
-        height: 1px;
-        display: block;
-        margin: 0 auto 10px;
-        background-color: #000;
-    }
-
-    .grid-settings__control-panel {
-        padding: 10px;
-    }
-
-    .control-panel__control-field {
-        display: flex;
-        align-items: center;
-        justify-items: center;
-        width: 100%;
+.control-panel__info-field {
+    padding-bottom: 10px;
+    h2 {
+        font-size: 1.5vw;
         margin-bottom: 10px;
-        border: 1px solid transparent;
-        transition: 1s;
-        padding: 5px;
-        position: relative;
+        text-align: center;
     }
+}
 
-    .control-panel__container:last-child {
-        margin-bottom: -10px;
-    }
+.control-panel__info-field::before {
+    content: " ";
+    width: 75%;
+    text-align: center;
+    height: 1px;
+    display: block;
+    margin: 0 auto 10px;
+    background-color: #000;
+}
 
-    .control-panel__control-field:hover {
-        background-color: #fff;
+.grid-settings__control-panel {
+    padding: 10px;
+}
+
+.control-panel__control-field {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid transparent;
+    transition: 1s;
+    padding: 5px;
+    position: relative;
+}
+
+.control-panel__container:last-child {
+    margin-bottom: -10px;
+}
+
+.control-panel__control-field:hover {
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.control-text {
+    margin-right: 5px;
+    min-width: 100px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.control {
+    position: relative;
+    text-align: left;
+    display: block;
+    height: 30px;
+    margin: 5px;
+    max-width: 30% !important;
+    input {
         border: 1px solid #000;
-    }
-
-    .control-text {
-        margin-right: 5px;
-        min-width: 100px;
+        color: rgb(54, 54, 54);
+        padding: 5px 5px 5px 10px;
         height: 30px;
-        line-height: 30px;
     }
+}
 
-    .control {
-        position: relative;
-        text-align: left;
-        display: block;
-        height: 30px;
-        margin: 5px;
-        max-width: 30% !important;
-        input {
-            border: 1px solid #000;
-            color: rgb(54, 54, 54);
-            padding: 5px 5px 5px 10px;
-            height: 30px;
-        }
+.select {
+    select {
+        line-height: 1;
+        padding: 5px;
     }
+}
 
-    .select {
-        /*display: inline-block;*/
-        /*// height: 2.25em;*/
-        /*position: relative;*/
-        /*vertical-align: top;*/
-        /*width: 100%;*/
-        /*box-shadow: inset 0 1px 2px hsla(0, 0%, 4%, 0.1);*/
-        /*max-width: 100%;*/
-        /*height: 2vw;*/
-        select {
-            line-height: 1;
-            padding: 5px;
-            /*border: 1px solid #000;*/
-            /*// border-left: none;*/
-            /*height: 100%;*/
-        }
-    }
-
-    #add-new-column {
-        margin-bottom: 0;
-    }
+#add-new-column {
+    margin-bottom: 0;
+}
 </style>

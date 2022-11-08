@@ -272,273 +272,271 @@
 </template>
 
 <script>
-    import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
-    import BaseButton from "@/components/UI/BaseButton";
-    import BaseCodeField from "@/components/UI/BaseCodeField";
-    export default {
-        name: "VGradient",
-      components: {BaseCodeField, BaseButton, BaseDeleteButton},
-      data() {
-            return {
-                gradientDirectionValue: "45",
-                gradientType: "linear-gradient",
-                gradientPositionShow: false,
-                gradientDirectionShow: true,
-                gradientPositionValue: "center",
-                gradientValues: [
-                    "0",
-                    "25",
-                ],
-                gradientColors: [
-                    "#0f46e8",
-                    "#f00b00",
-                ],
-                showString: false,
-            }
-        },
-        computed: {
-          gradientString() {
-            let gradients = this.gradientColors.reduce((accumulator, currentValue) =>  accumulator + `${currentValue},` , "");
-
-            let colors = gradients.split(',');
-            colors.pop();
-            let settings = colors.map((el, index) => `${el} ${this.gradientValues[index]}%`).join(', ');
-
-            switch (this.gradientType) {
-              case "linear-gradient":
-                return `${this.gradientType}(${this.gradientDirectionValue}deg, ${settings})`;
-              case "repeating-linear-gradient":
-                return `${this.gradientType}(${this.gradientDirectionValue}deg, ${settings})`;
-              case "radial-gradient":
-                return `${this.gradientType}(circle at ${this.gradientPositionValue}, ${settings})`;
-              case "repeating-radial-gradient":
-                return `${this.gradientType}(circle at ${this.gradientPositionValue}, ${settings})`;
-              case "conic-gradient":
-                return `${this.gradientType}(${settings})`;
-              case "repeating-conic-gradient":
-                return `${this.gradientType}(${settings})`;
-              default:
-                return '';
-            }
+import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
+import BaseButton from "@/components/UI/BaseButton";
+import BaseCodeField from "@/components/UI/BaseCodeField";
+export default {
+    name: "VGradient",
+    components: {BaseCodeField, BaseButton, BaseDeleteButton},
+    data() {
+          return {
+              gradientDirectionValue: "45",
+              gradientType: "linear-gradient",
+              gradientPositionShow: false,
+              gradientDirectionShow: true,
+              gradientPositionValue: "center",
+              gradientValues: [
+                  "0",
+                  "25",
+              ],
+              gradientColors: [
+                  "#0f46e8",
+                  "#f00b00",
+              ],
+              showString: false,
           }
+      },
+    computed: {
+      gradientString() {
+        let gradients = this.gradientColors.reduce((accumulator, currentValue) =>  accumulator + `${currentValue},` , "");
+
+        let colors = gradients.split(',');
+        colors.pop();
+        let settings = colors.map((el, index) => `${el} ${this.gradientValues[index]}%`).join(', ');
+
+        switch (this.gradientType) {
+          case "linear-gradient":
+            return `${this.gradientType}(${this.gradientDirectionValue}deg, ${settings})`;
+          case "repeating-linear-gradient":
+            return `${this.gradientType}(${this.gradientDirectionValue}deg, ${settings})`;
+          case "radial-gradient":
+            return `${this.gradientType}(circle at ${this.gradientPositionValue}, ${settings})`;
+          case "repeating-radial-gradient":
+            return `${this.gradientType}(circle at ${this.gradientPositionValue}, ${settings})`;
+          case "conic-gradient":
+            return `${this.gradientType}(${settings})`;
+          case "repeating-conic-gradient":
+            return `${this.gradientType}(${settings})`;
+          default:
+            return '';
+        }
+      }
+    },
+    methods: {
+        checkGradientType() {
+            let select = document.querySelector('#gradientType');
+            this.gradientPositionShow = select.value === "radial-gradient"
+                    || select.value === "repeating-radial-gradient";
+            this.gradientDirectionShow = select.value === "linear-gradient"
+                    || select.value === "repeating-linear-gradient";
         },
 
-        methods: {
-            checkGradientType() {
-                let select = document.querySelector('#gradientType');
-                this.gradientPositionShow = select.value === "radial-gradient"
-                        || select.value === "repeating-radial-gradient";
-                this.gradientDirectionShow = select.value === "linear-gradient"
-                        || select.value === "repeating-linear-gradient";
-            },
+        changeGradientDirection(event) {
+            let id = event.currentTarget.id.match(/\d+/);
+            let number = Number(id[0]);
+            switch (number) {
+                case 1:
+                    this.gradientDirectionValue = "315";
+                    break;
+                case 2:
+                    this.gradientDirectionValue = "0";
+                    break;
+                case 3:
+                    this.gradientDirectionValue = "45";
+                    break;
+                case 4:
+                    this.gradientDirectionValue = "270";
+                    break;
+                case 5:
+                    this.gradientDirectionValue = "90";
+                    break;
+                case 6:
+                    this.gradientDirectionValue = "135";
+                    break;
+                case 7:
+                    this.gradientDirectionValue = "180";
+                    break;
+                case 8:
+                    this.gradientDirectionValue = "225";
+                    break;
+                default:
+                    break;
+            }
+        },
 
-            changeGradientDirection(event) {
-                let id = event.currentTarget.id.match(/\d+/);
-                let number = Number(id[0]);
-                switch (number) {
-                    case 1:
-                        this.gradientDirectionValue = "315";
-                        break;
-                    case 2:
-                        this.gradientDirectionValue = "0";
-                        break;
-                    case 3:
-                        this.gradientDirectionValue = "45";
-                        break;
-                    case 4:
-                        this.gradientDirectionValue = "270";
-                        break;
-                    case 5:
-                        this.gradientDirectionValue = "90";
-                        break;
-                    case 6:
-                        this.gradientDirectionValue = "135";
-                        break;
-                    case 7:
-                        this.gradientDirectionValue = "180";
-                        break;
-                    case 8:
-                        this.gradientDirectionValue = "225";
-                        break;
-                    default:
-                        break;
-                }
-            },
+        addNewColor() {
+            let randomColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+            let randomValue =  `${Math.round(Math.random() * 100)}`;
+            this.gradientColors.push(randomColor);
+            this.gradientValues.push(randomValue);
+        },
 
-            addNewColor() {
-                let randomColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
-                let randomValue =  `${Math.round(Math.random() * 100)}`;
-                this.gradientColors.push(randomColor);
-                this.gradientValues.push(randomValue);
-            },
-
-            deleteColor({id}) {
-                this.gradientColors.splice(id, 1);
-                this.gradientValues.splice(id, 1);
-            },
-        }
+        deleteColor({id}) {
+            this.gradientColors.splice(id, 1);
+            this.gradientValues.splice(id, 1);
+        },
     }
+}
 </script>
 
 <style lang="scss" scoped>
-    //Diff for every page
-    .working-area__cell {
-        min-width: 25vw;
-        min-height: 25vw;
-        overflow: hidden;
+.working-area__cell {
+    min-width: 25vw;
+    min-height: 25vw;
+    overflow: hidden;
+    border: 1px solid #000;
+}
+
+.gradient-direction__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px 5px;
+    span {
+        margin-bottom: 10px;
+    }
+}
+.gradient-direction__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 2vw);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    width: 100%;
+}
+.gradient-direction__item {
+    background-color: #4bd1fe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.75s;
+    border: 1px solid transparent;
+    button {
+        background-color: transparent;
+    }
+    img {
+        width: 2vw;
+        height: 1vw;
+    }
+    &:hover {
+        background-color: #fff;
+        cursor: pointer;
         border: 1px solid #000;
     }
+}
+#gradient-direction__item__1 {
+    grid-area: 1 / 1 / 2 / 2;
+    svg {
+        transform: rotate(-135deg);
+    }
+}
+#gradient-direction__item__2 {
+    grid-area: 1 / 2 / 2 / 3;
+    svg {
+        transform: rotate(-90deg);
+    }
+}
+#gradient-direction__item__3 {
+    grid-area: 1 / 3 / 2 / 4;
+    svg {
+        transform: rotate(-45deg);
+    }
+}
+#gradient-direction__item__4 {
+    grid-area: 2 / 1 / 3 / 2;
+    svg {
+        transform: rotate(-180deg);
+    }
+}
+#gradient-direction__item__5 {
+    grid-area: 2 / 3 / 3 / 4;
+}
+#gradient-direction__item__6 {
+    grid-area: 3 / 1 / 4 / 2;
+    svg {
+        transform: rotate(135deg);
+    }
+}
+#gradient-direction__item__7 {
+    grid-area: 3 / 2 / 4 / 3;
+    svg {
+        transform: rotate(90deg);
+    }
+}
+#gradient-direction__item__8 {
+    grid-area: 3 / 3 / 4 / 4;
+    svg {
+        transform: rotate(45deg);
+    }
+}
 
-    .gradient-direction__container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin: 15px 5px;
-        span {
-            margin-bottom: 10px;
-        }
-    }
-    .gradient-direction__grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(3, 2vw);
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
-        width: 100%;
-    }
-    .gradient-direction__item {
-        background-color: #4bd1fe;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: 0.75s;
-        border: 1px solid transparent;
-        button {
-            background-color: transparent;
-        }
-        img {
-            width: 2vw;
-            height: 1vw;
-        }
-        &:hover {
-            background-color: #fff;
-            cursor: pointer;
-            border: 1px solid #000;
-        }
-    }
-    #gradient-direction__item__1 {
-        grid-area: 1 / 1 / 2 / 2;
-        svg {
-            transform: rotate(-135deg);
-        }
-    }
-    #gradient-direction__item__2 {
-        grid-area: 1 / 2 / 2 / 3;
-        svg {
-            transform: rotate(-90deg);
-        }
-    }
-    #gradient-direction__item__3 {
-        grid-area: 1 / 3 / 2 / 4;
-        svg {
-            transform: rotate(-45deg);
-        }
-    }
-    #gradient-direction__item__4 {
-        grid-area: 2 / 1 / 3 / 2;
-        svg {
-            transform: rotate(-180deg);
-        }
-    }
-    #gradient-direction__item__5 {
-        grid-area: 2 / 3 / 3 / 4;
-    }
-    #gradient-direction__item__6 {
-        grid-area: 3 / 1 / 4 / 2;
-        svg {
-            transform: rotate(135deg);
-        }
-    }
-    #gradient-direction__item__7 {
-        grid-area: 3 / 2 / 4 / 3;
-        svg {
-            transform: rotate(90deg);
-        }
-    }
-    #gradient-direction__item__8 {
-        grid-area: 3 / 3 / 4 / 4;
-        svg {
-            transform: rotate(45deg);
-        }
-    }
+.gradient-settings__grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 30px);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    margin: 15px 5px;
+    background-color: #4bd1fe;
+    padding: 55px 5px 0;
+    border: 2px solid #000;
+    border-radius: 5px;
+    position: relative;
+}
+.gradient-settings__item1 {
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-left: 5px;
+}
 
-    .gradient-settings__grid-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 30px);
-        grid-column-gap: 5px;
-        grid-row-gap: 5px;
-        margin: 15px 5px;
-        background-color: #4bd1fe;
-        padding: 55px 5px 0;
-        border: 2px solid #000;
-        border-radius: 5px;
-        position: relative;
-    }
-    .gradient-settings__item1 {
-        grid-area: 1 / 1 / 2 / 2;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        margin-left: 5px;
-    }
+.gradient-settings__item2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+.gradient-settings__item3 {
+    grid-area: 1 / 3 / 2 / 4;
+}
+.gradient-settings__item4 {
+    grid-area: 2 / 1 / 3 / 4;
+}
 
-    .gradient-settings__item2 {
-        grid-area: 1 / 2 / 2 / 3;
-    }
-    .gradient-settings__item3 {
-        grid-area: 1 / 3 / 2 / 4;
-    }
-    .gradient-settings__item4 {
-        grid-area: 2 / 1 / 3 / 4;
-    }
+.flexbox-item__content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 30px);
+    grid-column-gap: 10px;
+    grid-row-gap: 0;
+    margin: 15px 5px;
+}
+.flexbox-item__content__select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 30px;
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+    margin: 15px 5px;
+}
 
-    .flexbox-item__content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 30px);
-        grid-column-gap: 10px;
-        grid-row-gap: 0;
-        margin: 15px 5px;
-    }
-    .flexbox-item__content__select {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: 30px;
-        grid-column-gap: 0;
-        grid-row-gap: 0;
-        margin: 15px 5px;
-    }
+.flexbox-item__div1 {
+    grid-area: 1 / 1 / 2 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+.flexbox-item__div2 {
+    grid-area: 1 / 3 / 2 / 4;
+    padding: 0;
+    max-width: 150px;
+    font-size: 1.6 * $fontSize;
+}
 
-    .flexbox-item__div1 {
-        grid-area: 1 / 1 / 2 / 3;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-left: 5px;
-    }
-    .flexbox-item__div2 {
-        grid-area: 1 / 3 / 2 / 4;
-        padding: 0;
-        max-width: 150px;
-        font-size: 1.6 * $fontSize;
-    }
-
-    #flexbox-item__content__select {
-        grid-template-rows: 30px;
-        grid-template-columns: 1fr 2fr;
-        margin-top: 1.5vw;
-        margin-bottom: 1vw;
-    }
+#flexbox-item__content__select {
+    grid-template-rows: 30px;
+    grid-template-columns: 1fr 2fr;
+    margin-top: 1.5vw;
+    margin-bottom: 1vw;
+}
 </style>

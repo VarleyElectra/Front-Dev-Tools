@@ -204,110 +204,104 @@
 
 <script>
 export default {
-  name: "VMain",
+    name: "VMain",
 }
 </script>
 
 <style lang="scss">
+.main__container-vmain {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+}
 
-  main {
-    max-width: 80%;
-    margin: 50px auto;
-  }
+.main__instrument-card {
+  margin: 15px;
+  border: 5px solid #000;
+  position: relative;
+  font-size: 1vw;
+  line-height: 1.5;
+  transition: 0.5s;
+  min-height: 400px;
+}
 
-  // ЕСЛИ ХОЧЕШЬ ДОБАВИТЬ НОВЫЕ ИНСТРУМЕНТЫ, ТО НУЖНО ИЗМЕНИТЬ ПАРАМЕТР grid-template-rows: repeat(2, 1fr); И ВЫСТАВИТЬ НУЖНОЕ ЗНАЧЕНИЕ
+.main__instrument-card:hover {
+  border: 5px solid $mainBlueColor;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
 
-  .main__container-vmain {
-    height: 100%;
-    display: grid;
-    //TODO Заменить на repeat minmax
-    grid-template-columns:  repeat(3, 1fr);
-    // grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 25px;
-    grid-row-gap: 25px;
-  }
+.main__instrument-card__image {
+  cursor: pointer;
+  min-width: 100%;
+  position: relative;
+  padding: 16px 0;
+  margin-bottom: 25px;
+}
 
-  .main__instrument-card {
-    margin: 15px;
-    border: 5px solid #000;
-    position: relative;
-    font-size: 1vw;
-    line-height: 1.5;
-    transition: 0.5s;
-    min-height: 400px;
-  }
-
-  .main__instrument-card:hover {
-    border: 5px solid #331bcf;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  }
-
+.main__instrument-card:nth-child(1) {
   .main__instrument-card__image {
-    cursor: pointer;
-    min-width: 100%;
-    position: relative;
-    padding: 16px 0;
-    margin-bottom: 25px;
+    background-color: rgb(253, 84, 84);
+    background-size: contain;
   }
+}
 
-  .main__instrument-card:nth-child(1) {
-    .main__instrument-card__image {
-      background-color: rgb(253, 84, 84);
-      background-size: contain;
-    }
+.main__instrument-card:nth-child(2) {
+  .main__instrument-card__image {
+    background-color: rgb(131, 224, 70);
   }
-  .main__instrument-card:nth-child(2) {
-    .main__instrument-card__image {
-      background-color: rgb(131, 224, 70);
-    }
-  }
-  .main__instrument-card:nth-child(3) {
-    .main__instrument-card__image {
-      background-color: rgb(106, 220, 240);
-    }
-  }
-  .main__instrument-card:nth-child(4) {
-    .main__instrument-card__image {
-      background-color: rgb(240, 106, 233);
-    }
-  }
-  .main__instrument-card:nth-child(5) {
-    .main__instrument-card__image {
-      background-color: rgb(37, 236, 143);
-    }
-  }
-  .main__instrument-card:nth-child(6) {
-    .main__instrument-card__image {
-      background-color: rgba(32, 9, 231, 0.6);
-    }
-  }
+}
 
-  .card__image {
-    width: 150px;
-    height: 150px;
-    display: table;
-    margin: 0 auto;
+.main__instrument-card:nth-child(3) {
+  .main__instrument-card__image {
+    background-color: rgb(106, 220, 240);
   }
+}
 
-  .main__instrument-card__text {
-    padding: 0 16px 16px;
-    width: 100%;
-    text-align: center;
-    cursor: pointer;
-    font-size: 1.5 * $fontSize;
-    h3 {
-      font-size: 2 * $fontSize;
-      a {
-        color: #331bcf;
-      }
-      a:visited {
-        color: #331bcf;
-      }
+.main__instrument-card:nth-child(4) {
+  .main__instrument-card__image {
+    background-color: rgb(240, 106, 233);
+  }
+}
+
+.main__instrument-card:nth-child(5) {
+  .main__instrument-card__image {
+    background-color: rgb(37, 236, 143);
+  }
+}
+
+.main__instrument-card:nth-child(6) {
+  .main__instrument-card__image {
+    background-color: rgba(32, 9, 231, 0.6);
+  }
+}
+
+.card__image {
+  width: 150px;
+  height: 150px;
+  display: table;
+  margin: 0 auto;
+}
+
+.main__instrument-card__text {
+  padding: 0 16px 16px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.5 * $fontSize;
+  h3 {
+    font-size: 2 * $fontSize;
+    a {
+      color: $mainBlueColor;
     }
-
+    a:visited {
+      color: $mainBlueColor;
+    }
   }
+}
 
-  .main__instrument-card__text__href {
-    color: #000;
-  }
+.main__instrument-card__text__href {
+  color: #000;
+}
 </style>

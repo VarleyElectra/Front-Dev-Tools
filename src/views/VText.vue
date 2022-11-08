@@ -350,83 +350,87 @@
 </template>
 
 <script>
-    import BaseCodeField from "@/components/UI/BaseCodeField";
-    export default {
-      name: "VText",
-      components: {BaseCodeField},
-      data() {
-            return {
-                fontSizeValue: 1,
-                fontSizeUnit: "vw",
-                fontWeight: "normal",
-                fontStyle: "normal",
-                fontFamily: "sans-serif",
-                color: "#000000",
-                background: "#ffffff",
-                textDecoration: "none",
-                textTransform: "none",
-                textAlign: "left",
-                lineHeightValue: 1,
-                lineHeightUnit: "vw",
-                textAreaText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. " +
-                        "Optio porro voluptas fuga ducimus hic, animi ut alias dicta " +
-                        "repudiandae incidunt quo natus vel. Illum modi deserunt porro " +
-                        "quisquam provident maxime!",
-            }
-        },
-      computed: {
-          lineHeight() {
-            return `${this.lineHeightValue}${this.lineHeightUnit}`
-          },
-          fontSize() {
-            return `${this.fontSizeValue}${this.fontSizeUnit}`
+import BaseCodeField from "@/components/UI/BaseCodeField";
+export default {
+    name: "VText",
+    components: {BaseCodeField},
+    data() {
+          return {
+              fontSizeValue: 1,
+              fontSizeUnit: "vw",
+              fontWeight: "normal",
+              fontStyle: "normal",
+              fontFamily: "sans-serif",
+              color: "#000000",
+              background: "#ffffff",
+              textDecoration: "none",
+              textTransform: "none",
+              textAlign: "left",
+              lineHeightValue: 1,
+              lineHeightUnit: "vw",
+              textAreaText: "Lorem ipsum dolor sit amet consectetur adipisicing elit. " +
+                      "Optio porro voluptas fuga ducimus hic, animi ut alias dicta " +
+                      "repudiandae incidunt quo natus vel. Illum modi deserunt porro " +
+                      "quisquam provident maxime!",
           }
-      },
-    }
+    },
+    computed: {
+        lineHeight() {
+          return `${this.lineHeightValue}${this.lineHeightUnit}`
+        },
+        fontSize() {
+          return `${this.fontSizeValue}${this.fontSizeUnit}`
+        }
+    },
+}
 </script>
 
 <style lang="scss" scoped>
-  .working-area__cell {
-    box-shadow: 8px 8px 8px 8px rgba(34, 60, 80, 0.6);
-    background-color: #fff;
+.working-area__cell {
+  box-shadow: 8px 8px 8px 8px $shadowColor;
+  background-color: #fff;
 
-    textarea {
-      resize: none;
-      padding: 10px;
-      font-size: 1.8 * $fontSize;
-      line-height: 1;
-      max-width: 40vw;
-      max-height: 25vw;
-      min-width: 35vw;
-      min-height: 20vw;
-      font-weight: normal;
-      font-style: normal;
-      font-family: sans-serif;
-      text-align: left;
-    }
+  textarea {
+    resize: none;
+    padding: 10px;
+    font-size: 1.8 * $fontSize;
+    line-height: 1;
+    max-width: 40vw;
+    max-height: 25vw;
+    min-width: 35vw;
+    min-height: 20vw;
+    font-weight: normal;
+    font-style: normal;
+    font-family: sans-serif;
+    text-align: left;
   }
+}
 
-  .main__font-settings {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 30px;
-    grid-column-gap: 10px;
-    grid-row-gap: 0;
-    margin: 25px 5px;
-  }
-  .font-settings__div1 {
-    grid-area: 1 / 1 / 2 / 2;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .font-settings__div2 {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  .font-settings__div3 {
-    grid-area: 1 / 3 / 2 / 4;
-  }
-  .font-settings__2fr_option {
-    grid-area: 1 / 2 / 2 / 4;
-  }
+.main__font-settings {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 30px;
+  grid-column-gap: 10px;
+  grid-row-gap: 0;
+  margin: 25px 5px;
+}
+
+.font-settings__div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.font-settings__div2 {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.font-settings__div3 {
+  grid-area: 1 / 3 / 2 / 4;
+}
+
+.font-settings__2fr_option {
+  grid-area: 1 / 2 / 2 / 4;
+}
 </style>

@@ -18,7 +18,7 @@ export default {
           type: String,
           default: () => 'Копировать'
         }
-    },
+  },
   methods: {
         copyText(event) {
             let text = document.getElementById(`${this.elementSelector}`);
@@ -36,6 +36,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>

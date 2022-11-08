@@ -16,11 +16,11 @@
 </template>
 
 <script>
-    import BaseButton from "@/components/UI/BaseButton";
-    export default {
-        name: "VNotFound",
-      components: {BaseButton}
-    }
+import BaseButton from "@/components/UI/BaseButton";
+export default {
+    name: "VNotFound",
+    components: {BaseButton}
+}
 </script>
 
 <style lang="scss" scoped>
@@ -46,5 +46,4 @@
     margin: 10px auto;
   }
 }
-
 </style>
