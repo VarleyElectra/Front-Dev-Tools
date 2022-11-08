@@ -1,0 +1,260 @@
+@import 'variables.scss';
+@import 'null.scss';
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+//Copied
+main {
+  max-width: 80%;
+  margin: 50px auto;
+}
+
+//Copied
+.main__container {
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: auto 25%;
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+  grid-template-areas: "area  settings";
+}
+
+//Copied
+.main__header {
+  height: 100px;
+  background-color: #befaff;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 2vw;
+  border: 2px solid #000;
+  h1 {
+    margin-left: 15px;
+    transition: 1s;
+    cursor: pointer;
+  }
+  h1:hover {
+    color: #331bcf;
+  }
+  img {
+    width: 60px;
+    height: 60px;
+    margin-left: 15px;
+  }
+  margin-bottom: 25px;
+}
+
+//Copied
+.main__grid-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  p {
+    font-size: 1.5vw;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+}
+
+//Copied
+.main__working-area {
+  grid-area: area;
+  background-color: #befaff;
+  border: 2px solid #000;
+  overflow: auto;
+}
+//Copied
+.main__working-area__flex {
+  display: flex;
+  min-height: 50%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: flex-start;
+  margin: 50px;
+}
+
+//Copied
+.main__grid-settings {
+  background-color: #befaff;
+  border: 2px solid #000;
+  min-height: 100%;
+  position: relative;
+  h2 {
+    font-size: 1.5vw;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+//Copied
+.control {
+  position: relative;
+  text-align: left;
+  display: block;
+  height: 30px;
+  span {
+    position: absolute;
+    right: 22px;
+    top: 7px;
+  }
+  input {
+    width: 100%;
+    border: 1px solid #000;
+    max-width: 100%;
+    color: rgb(54, 54, 54);
+    padding: 5px;
+    height: 30px;
+  }
+}
+//Copied
+.tooltip-settings {
+  display: inline;
+}
+
+//Copied
+.select {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  box-shadow: inset 0 1px 2px hsla(0, 0%, 4%, 0.1);
+  height: 30px;
+  width: 100%;
+  select {
+    line-height: 1;
+    box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
+    height: 100%;
+    width: 100%;
+  }
+}
+
+option {
+  background-color: #befaff;
+  box-shadow: 0 0 0 1px rgba(34, 60, 80, 1);
+}
+
+option:hover {
+  background-color: #befaff;
+}
+
+.add-new-element-button-container {
+  margin-bottom: 15px;
+  justify-content: center;
+  display: flex;
+}
+
+//Copied
+.main__code-fields {
+  min-height: 300px;
+  font-size: 2 * $fontSize;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 0;
+}
+
+//Copied
+.main__code-fields {
+  min-height: 300px;
+  font-size: 2 * $fontSize;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 0;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  svg {
+    height: 18px;
+  }
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  min-width: 25vw; /* Ширина подсказки */
+  top: 0;
+  right: 0; /* Положение подсказки */
+  background: #3989c9;
+  color: #fff;
+  text-align: center;
+  padding: 7.5px;
+  border-radius: 6px;
+  z-index: 2;
+  font-size: 1.5 * $fontSize;
+  line-height: 1.25;
+  opacity: 0;
+  transition: 0.25s;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1; /* Показываем подсказку */
+}
+.settings__grid-text {
+  height: 2vw;
+  line-height: 2vw;
+  grid-area: 1 / 1 / 2 / 3;
+}
+.flexbox-item__container {
+  background-color: #4bd1fe;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid #000;
+  position: relative;
+  h3 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+}
+
+.delete-button-container {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.flexbox-item__div2 {
+  grid-area: 1 / 3 / 2 / 4;
+  padding: 0;
+}
+
+.flexbox-item__div3 {
+  grid-area: 2 / 1 / 3 / 4;
+}
+
+.control__range-input {
+  padding: 0 !important;
+}
+
+input[type="number"] {
+  width: 100%;
+}
+input[type="color"] {
+  padding: 2px;
+  width: 100%;
+  transition: 1s;
+}
+input[type="color"]:hover {
+  background-color: rgba(255, 255, 255, 0);
+  cursor: pointer;
+}
+
+
