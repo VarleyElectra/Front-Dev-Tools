@@ -14,12 +14,12 @@
                       'align-items': alignItems, 'align-content': alignContent}"
           >
             <div
-              v-for="(flexItem, index) in flexBoxesArray"
-              :key="index"
+              v-for="(flexItem, index) in flexBoxCells"
+              :key="flexItem.id"
               class="working-area__cell"
-              :style="{'order': flexItem[0], 'flex-grow': flexItem[1], 
-                       'flex-shrink': flexItem[2], 'flex-basis': flexItem[3], 
-                       'align-self': flexItem[4]}"
+              :style="{'order': flexItem.order, 'flex-grow': flexItem.flexGrow, 
+                       'flex-shrink': flexItem.flexShrink, 'flex-basis': flexItem.flexBasis, 
+                       'align-self': flexItem.alignSelf}"
             >
               {{ index + 1 }}
             </div>
@@ -179,8 +179,8 @@
           
           <transition-group name="element-list">
             <div
-              v-for="(flexItem, index) in flexBoxesArray"
-              :key="index"
+              v-for="(flexItem, index) in flexBoxCells"
+              :key="flexItem.id"
               class="flexbox-item__container"
             >
               <h3>Элемент №{{ index + 1 }}</h3>
@@ -207,7 +207,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="flexItem[0]"
+                      v-model="flexItem.order"
                       type="number"
                       min="0"
                     >
@@ -234,7 +234,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="flexItem[1]"
+                      v-model="flexItem.flexGrow"
                       type="number"
                       min="0"
                     >
@@ -244,7 +244,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="flexItem[2]"
+                      v-model="flexItem.flexShrink"
                       type="number"
                       min="0"
                     >
@@ -254,7 +254,7 @@
                 <div class="flexbox-item__div4">
                   <p class="control">
                     <input
-                      v-model="flexItem[3]"
+                      v-model="flexItem.flexBasis"
                       type="text"
                       min="0"
                     >
@@ -283,7 +283,7 @@
                   >
                     <span class="select-vflex">
                       <select
-                        v-model="flexItem[4]"
+                        v-model="flexItem.alignSelf"
                         aria-label="Grid Template Columns"
                       >
                         <option value="auto">auto</option>
@@ -319,8 +319,8 @@
         <template #code>
           <pre><code><span class="element">&lt;div</span> id="fdt-flexbox__container"<span class="element">&gt;</span>
   <span
-          v-for="(flexItem, index) in flexBoxesArray"
-          :key="index"
+          v-for="flexItem in flexBoxCells"
+          :key="flexItem.id"
   >
     <span class="element">&lt;div</span> class="fdt-flexbox__item"<span class="element">&gt;</span><span class="element">&lt;div/&gt;</span>
   </span>
@@ -344,13 +344,13 @@
 <span class="element">}</span>
 
 <span
-        v-for="(flexItem, index) in flexBoxesArray"
-        :key="index"
+        v-for="(flexItem, index) in flexBoxCells"
+        :key="flexItem.id"
 >
 <span class="element">.fdt-flexbox__item:nth-child({{ index + 1 }}) {</span>
-  <span class="textArea">order: {{ flexItem[0] }};</span>
-  <span class="textArea">flex: {{ flexItem[1] }} {{ flexItem[2] }} {{ flexItem[3] }};</span>
-  <span class="textArea">align-self: {{ flexItem[4] }};</span>
+  <span class="textArea">order: {{ flexItem.order }};</span>
+  <span class="textArea">flex: {{ flexItem.flexGrow }} {{ flexItem.flexShrink }} {{ flexItem.flexBasis }};</span>
+  <span class="textArea">align-self: {{ flexItem.alignSelf }};</span>
 <span class="element">}</span>
 </span>
                       </code>
@@ -375,21 +375,56 @@ export default {
             justifyContent: "flex-start",
             alignItems: "flex-start",
             alignContent: "flex-start",
-            flexBoxesArray: [
-                ["0", "0", "0", "auto", "auto"],
-                ["0", "0", "0", "auto", "auto"],
-                ["0", "0", "0", "auto", "auto"],
-                ["0", "0", "0", "auto", "auto"],
+            flexBoxCells: [
+              {
+                order: 0,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                alignSelf: 'auto',
+                id: Date.now() + Math.round(Math.random() * 100),
+              },
+              {
+                order: 0,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                alignSelf: 'auto',
+                id: Date.now() + Math.round(Math.random() * 100),
+              },
+              {
+                order: 0,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                alignSelf: 'auto',
+                id: Date.now() + Math.round(Math.random() * 100),
+              },
+              {
+                order: 0,
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                alignSelf: 'auto',
+                id: Date.now() + Math.round(Math.random() * 100),
+              },
             ]
         }
     },
     methods: {
         addNewFlexItem() {
-            this.flexBoxesArray.push(["0", "0", "0", "auto", "auto"])
+            this.flexBoxCells.push({
+              order: 0,
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 'auto',
+              alignSelf: 'auto',
+              id: Date.now() + Math.round(Math.random() * 100),
+            })
         },
 
         deleteFlexItem({id}) {
-            this.flexBoxesArray.splice(id, 1);
+            this.flexBoxCells.splice(id, 1);
         },
     }
 }

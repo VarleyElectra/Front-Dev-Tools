@@ -22,7 +22,7 @@
           <transition-group name="element-list">
             <div
               v-for="(shadow, index) in shadowsArr"
-              :key="index"
+              :key="shadow.id"
               class="flexbox-item__container"
             >
               <h3>Тень {{ index + 1 }}</h3>
@@ -57,7 +57,7 @@
                   >
                     <span class="select">
                       <select
-                        v-model="shadow[0]"
+                        v-model="shadow.inset"
                         aria-label="Grid Template Columns"
                       >
                         <option value="no">no</option>
@@ -81,7 +81,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[1]"
+                      v-model="shadow.offsetX"
                       type="number"
                       min="-100"
                       max="100"
@@ -93,7 +93,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="shadow[1]"
+                      v-model="shadow.offsetX"
                       type="range"
                       min="-100"
                       max="100"
@@ -116,7 +116,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[2]"
+                      v-model="shadow.offsetY"
                       type="number"
                       min="-100"
                       max="100"
@@ -128,7 +128,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="shadow[2]"
+                      v-model="shadow.offsetY"
                       type="range"
                       min="-100"
                       max="100"
@@ -152,7 +152,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[3]"
+                      v-model="shadow.blurRadius"
                       type="number"
                       min="0"
                       max="100"
@@ -164,7 +164,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="shadow[3]"
+                      v-model="shadow.blurRadius"
                       type="range"
                       min="0"
                       max="100"
@@ -187,7 +187,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[4]"
+                      v-model="shadow.spreadRadius"
                       type="number"
                       min="-100"
                       max="100"
@@ -199,7 +199,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="shadow[4]"
+                      v-model="shadow.spreadRadius"
                       type="range"
                       min="-100"
                       max="100"
@@ -222,7 +222,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[5]"
+                      v-model="shadow.transparent"
                       type="number"
                       step="0.1"
                       min="0.0"
@@ -234,7 +234,7 @@
                 <div class="flexbox-item__div3">
                   <p class="control">
                     <input
-                      v-model="shadow[5]"
+                      v-model="shadow.transparent"
                       type="range"
                       step="0.005"
                       min="0.0"
@@ -258,7 +258,7 @@
                 <div class="flexbox-item__div2">
                   <p class="control">
                     <input
-                      v-model="shadow[6]"
+                      v-model="shadow.shadowColor"
                       type="color"
                     >
                   </p>
@@ -319,15 +319,16 @@ export default {
     data() {
           return {
               shadowsArr: [
-                  [
-                      "no",
-                      "4",
-                      "4",
-                      "8",
-                      "0",
-                      "0.4",
-                      "#000000",
-                  ],
+                {
+                  inset: 'no',
+                  offsetX: 4,
+                  offsetY: 4,
+                  blurRadius: 8,
+                  spreadRadius: 0,
+                  transparent: 0.4,
+                  shadowColor: '#000000',
+                  id: Date.now(),
+                }
               ],
           }
       },
@@ -335,13 +336,12 @@ export default {
       shadowString() {
         let boxShadowCSS = "";
         for (let shadow of this.shadowsArr) {
-          if (shadow[0] === "yes") {
+          if (shadow.inset === "yes") {
             boxShadowCSS += "inset "
           }
-          boxShadowCSS += `${shadow[1]}px ${shadow[2]}px ${shadow[3]}px ${shadow[4]}px `;
-          let alpha = shadow[5];
-          let rgbColorObj = this.convertColor(shadow[6]);
-          boxShadowCSS += `rgba(${rgbColorObj[0]}, ${rgbColorObj[1]}, ${rgbColorObj[2]}, ${alpha}), `;
+          boxShadowCSS += `${shadow.offsetX}px ${shadow.offsetY}px ${shadow.blurRadius}px ${shadow.spreadRadius}px `;
+          let rgbColorObj = this.convertColor(shadow.shadowColor);
+          boxShadowCSS += `rgba(${rgbColorObj[0]}, ${rgbColorObj[1]}, ${rgbColorObj[2]}, ${shadow.transparent}), `;
         }
         boxShadowCSS = boxShadowCSS.slice(0, -2) // Удалить запятую у последней тени
         return boxShadowCSS;
@@ -361,7 +361,16 @@ export default {
 
         addNewShadow() {
             let randomColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
-            this.shadowsArr.push(["no", "8", "8", "8", "0", "0.4", randomColor])
+            this.shadowsArr.push({
+              inset: 'no',
+              offsetX: '4',
+              offsetY: '4',
+              blurRadius: '8',
+              spreadRadius: '0',
+              transparent: '0.4',
+              shadowColor: randomColor,
+              id: Date.now(),
+            })
         },
 
         deleteShadow({id}) {

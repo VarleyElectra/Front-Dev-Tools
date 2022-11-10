@@ -28,7 +28,7 @@
             Настройки
             <div class="tooltip">
               <font-awesome-icon icon="fa-solid fa-clipboard-question" />
-              <span class="tooltiptext">Columns - количество столбцов. <br> 
+              <span class="tooltiptext">Columns - количество столбцов. <br>
                 Rows - количество строк. <br>
                 Columns Gap - отступ между столбцами.<br>
                 Rows Gap - отступ между строками</span>
@@ -94,8 +94,8 @@
 
               <transition-group name="element-list">
                 <div
-                  v-for="(colArr, index) in gridTemplateColumnsArr"
-                  :key="index"
+                  v-for="(colArr, index) in gridTemplateColumns"
+                  :key="colArr.id"
                   class="control-panel__control-field"
                 >
                   <p class="control-text">
@@ -103,7 +103,7 @@
                   </p>
                   <p class="control">
                     <input
-                      v-model="colArr[0]"
+                      v-model="colArr.sizeValue"
                       type="number"
                       min="1"
                     >
@@ -111,7 +111,7 @@
                   <p class="contol">
                     <span class="select">
                       <select
-                        v-model="colArr[1]"
+                        v-model="colArr.sizeUnit"
                         aria-label="Grid Template Columns"
                       >
                         <option value="px">px</option>
@@ -161,8 +161,8 @@
 
               <transition-group name="element-list">
                 <div
-                  v-for="(rowArr, index) in gridTemplateRowsArr"
-                  :key="index"
+                  v-for="(rowArr, index) in gridTemplateRows"
+                  :key="rowArr.id"
                   class="control-panel__control-field"
                 >
                   <p class="control-text">
@@ -170,7 +170,7 @@
                   </p>
                   <p class="control">
                     <input
-                      v-model="rowArr[0]"
+                      v-model="rowArr.sizeValue"
                       type="number"
                       min="1"
                     >
@@ -178,7 +178,7 @@
                   <p class="contol">
                     <span class="select">
                       <select
-                        v-model="rowArr[1]"
+                        v-model="rowArr.sizeUnit"
                         aria-label="Grid Template Columns"
                       >
                         <option value="px">px</option>
@@ -220,8 +220,8 @@
         <template #code>
           <pre><code><span class="element">&lt;div</span> id="fdt-grid__container"<span class="element">&gt;</span>
   <span
-          v-for="(flexItem, index) in cells"
-          :key="index"
+          v-for="gridItem in cells"
+          :key="gridItem.id"
   >
   <span class="element">&lt;div</span> class="fdt-grid__item"<span class="element">&gt;</span><span class="element">&lt;div/&gt;</span>
   </span>
@@ -262,28 +262,58 @@ export default {
       return {
         gridColumns: 4,
         gridRows: 3,
-        columnsGap: "0",
-        rowsGap: "0",
-        gridTemplateColumnsArr: [
-          ["100", "px"],
-          ["100", "px"],
-          ["100", "px"],
-          ["100", "px"],
+        columnsGap: 0,
+        rowsGap: 0,
+        gridTemplateColumns: [
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
         ],
-        gridTemplateRowsArr: [
-          ["100", "px"],
-          ["100", "px"],
-          ["100", "px"],
+        gridTemplateRows: [
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
+          {
+            sizeValue: 100,
+            sizeUnit: 'px',
+            id: Date.now() + Math.round(Math.random() * 100),
+          },
         ],
       }
     },
     computed: {
       gridTemplateColumnString() {
-        return this.gridTemplateColumnsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
+        return this.gridTemplateColumns
+            .reduce((acc, cell) => acc + `${cell.sizeValue}${cell.sizeUnit} `, "");
       },
 
       gridTemplateRowString() {
-        return this.gridTemplateRowsArr.reduce((acc, val) => acc + `${val[0]}${val[1]} `, "");
+        return this.gridTemplateRows
+            .reduce((acc, cell) => acc + `${cell.sizeValue}${cell.sizeUnit} `, "");
       },
 
       cells() {
@@ -293,34 +323,50 @@ export default {
     watch: {
       gridColumns() {
         let columnsArrLength = Number(this.gridColumns);
-        while (this.gridTemplateColumnsArr.length !== columnsArrLength) {
-          if (this.gridTemplateColumnsArr.length < columnsArrLength) {
-            this.gridTemplateColumnsArr.push(["100", "px"]);
+        while (this.gridTemplateColumns.length !== columnsArrLength) {
+          if (this.gridTemplateColumns.length < columnsArrLength) {
+            this.gridTemplateColumns.push({
+              sizeValue: 100,
+              sizeUnit: 'px',
+              id: Date.now()
+            });
           } else {
-            this.gridTemplateColumnsArr.pop();
+            this.gridTemplateColumns.pop();
           }
         }
       },
 
       gridRows() {
         let rowsArrLength = Number(this.gridRows);
-        while (this.gridTemplateRowsArr.length !== rowsArrLength) {
-          if (this.gridTemplateRowsArr.length < rowsArrLength) {
-            this.gridTemplateRowsArr.push(["100", "px"]);
+        while (this.gridTemplateRows.length !== rowsArrLength) {
+          if (this.gridTemplateRows.length < rowsArrLength) {
+            this.gridTemplateRows.push({
+              sizeValue: 100,
+              sizeUnit: 'px',
+              id: Date.now()
+            });
           } else {
-            this.gridTemplateRowsArr.pop();
+            this.gridTemplateRows.pop();
           }
         }
       }
     },
     methods: {
       addNewColumn() {
-        this.gridTemplateColumnsArr.push(["100", "px"]);
+        this.gridTemplateColumns.push({
+          sizeValue: 100,
+          sizeUnit: 'px',
+          id: Date.now()
+        });
         this.gridColumns += 1;
       },
 
       addNewRow() {
-        this.gridTemplateRowsArr.push(["100", "px"]);
+        this.gridTemplateRows.push({
+          sizeValue: 100,
+          sizeUnit: 'px',
+          id: Date.now()
+        });
         this.gridRows += 1;
       },
 
@@ -330,11 +376,11 @@ export default {
 
         switch (type) {
           case 'row':
-            this.gridTemplateRowsArr.splice(id, 1);
+            this.gridTemplateRows.splice(id, 1);
             this.gridRows -= 1;
             break;
           case 'column':
-            this.gridTemplateColumnsArr.splice(id, 1);
+            this.gridTemplateColumns.splice(id, 1);
             this.gridColumns -= 1;
             break;
           default:

@@ -186,7 +186,7 @@
           <transition-group name="element-list">
             <div
               v-for="(color, index) in gradientColors"
-              :key="index"
+              :key="color.id"
               class="gradient-settings__grid-container"
             >
               <div class="delete-button-container">
@@ -215,7 +215,7 @@
               <div class="gradient-settings__item3">
                 <p class="control">
                   <input
-                    v-model="gradientColors[index]"
+                    v-model="gradientColors[index].color"
                     type="color"
                   >
                 </p>
@@ -292,15 +292,15 @@ export default {
                   "25",
               ],
               gradientColors: [
-                  "#0f46e8",
-                  "#f00b00",
+                {color: '#0f46e8', id: Date.now() + Math.round(Math.random() * 100)},
+                {color: '#f00b00', id: Date.now() + Math.round(Math.random() * 100)}
               ],
-              showString: false,
           }
       },
     computed: {
       gradientString() {
-        let gradients = this.gradientColors.reduce((accumulator, currentValue) =>  accumulator + `${currentValue},` , "");
+        let gradients = this.gradientColors
+            .reduce((accumulator, currentValue) =>  accumulator + `${currentValue.color},` , "");
 
         let colors = gradients.split(',');
         colors.pop();
@@ -369,7 +369,7 @@ export default {
         addNewColor() {
             let randomColor = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
             let randomValue =  `${Math.round(Math.random() * 100)}`;
-            this.gradientColors.push(randomColor);
+            this.gradientColors.push({color: randomColor, id: Date.now()});
             this.gradientValues.push(randomValue);
         },
 

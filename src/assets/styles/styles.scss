@@ -253,13 +253,13 @@ input[type="color"]:hover {
 .element-list-move, /* apply transition to moving elements */
 .element-list-enter-active,
 .element-list-leave-active {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 }
 
 .element-list-enter-from,
 .element-list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(40px);
 }
 
 /* ensure leaving items are taken out of layout flow so that moving
