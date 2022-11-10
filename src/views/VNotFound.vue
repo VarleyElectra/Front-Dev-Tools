@@ -16,10 +16,8 @@
 </template>
 
 <script>
-import BaseButton from "@/components/UI/BaseButton";
 export default {
     name: "VNotFound",
-    components: {BaseButton}
 }
 </script>
 

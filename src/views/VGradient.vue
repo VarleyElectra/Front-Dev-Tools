@@ -274,22 +274,18 @@
 </template>
 
 <script>
-import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
-import BaseButton from "@/components/UI/BaseButton";
-import BaseCodeField from "@/components/UI/BaseCodeField";
 export default {
     name: "VGradient",
-    components: {BaseCodeField, BaseButton, BaseDeleteButton},
     data() {
           return {
-              gradientDirectionValue: "45",
+              gradientDirectionValue: 45,
               gradientType: "linear-gradient",
               gradientPositionShow: false,
               gradientDirectionShow: true,
               gradientPositionValue: "center",
               gradientValues: [
-                  "0",
-                  "25",
+                  0,
+                  25,
               ],
               gradientColors: [
                 {color: '#0f46e8', id: Date.now() + Math.round(Math.random() * 100)},

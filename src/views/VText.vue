@@ -350,10 +350,8 @@
 </template>
 
 <script>
-import BaseCodeField from "@/components/UI/BaseCodeField";
 export default {
     name: "VText",
-    components: {BaseCodeField},
     data() {
           return {
               fontSizeValue: 1,

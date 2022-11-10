@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from '@/router/router'
+import components from '@/components/UI'
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 /* import font awesome icon component */
@@ -25,6 +26,10 @@ library.add(faXmark, faPlus, faArrowRight, faClipboardQuestion, faCloudArrowDown
     faCloudArrowUp, faInstagram, faVk, faGithub)
 
 const app = createApp(App);
+
+components.forEach(component => {
+    app.component(component.name, component)
+})
 
 app
     .component('FontAwesomeIcon', FontAwesomeIcon)

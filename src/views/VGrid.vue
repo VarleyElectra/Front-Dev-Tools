@@ -251,13 +251,8 @@
 </template>
 
 <script>
-import BaseDeleteButton from "@/components/UI/BaseDeleteButton";
-import BaseButton from "@/components/UI/BaseButton";
-import BaseCodeField from "@/components/UI/BaseCodeField";
-
 export default {
     name: "VGrid",
-    components: {BaseCodeField, BaseButton, BaseDeleteButton},
     data() {
       return {
         gridColumns: 4,

@@ -393,10 +393,8 @@
 </template>
 
 <script>
-import BaseCodeField from "@/components/UI/BaseCodeField";
 export default {
   name: "VFilter",
-  components: {BaseCodeField},
   data() {
     return {
       filterBlur: "0",
