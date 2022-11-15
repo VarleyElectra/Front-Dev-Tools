@@ -1,11 +1,11 @@
 # Front Dev Tools
-## Сайт позволяющий с помощью визуального интерфейса генерировать HTML&CSS код для:
-### :white_check_mark: Создания CSS-Grid
-### :white_check_mark: Создания CSS-Flexbox
+## Сайт позволяющий с помощью визуального интерфейса генерировать HTML&CSS код для создания:
+### :white_check_mark: CSS-Grid
+### :white_check_mark: CSS-Flexbox
 ### :white_check_mark: Градиентов
 ### :white_check_mark: Теней
 ### :white_check_mark: Текста
-### :white_check_mark: Фильтров
+### :white_check_mark: Фильтров изображений
 ## Project setup
 ```
 npm install
