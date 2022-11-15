@@ -1,5 +1,11 @@
-# vue_graduation_project
-
+# Front Dev Tools
+## Сайт позволяющий с помощью визуального интерфейса генерировать HTML&CSS код для:
+### :white_check_mark: Создания CSS-Grid
+### :white_check_mark: Создания CSS-Flexbox
+### :white_check_mark: Градиентов
+### :white_check_mark: Теней
+### :white_check_mark: Текста
+### :white_check_mark: Фильтров
 ## Project setup
 ```
 npm install
