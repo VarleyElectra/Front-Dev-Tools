@@ -1,13 +1,13 @@
 # Front Dev Tools
-## Сайт позволяющий с помощью визуального интерфейса генерировать HTML&CSS код для создания:
+## A site that allows you to generate HTML&CSS code for:
 ### :white_check_mark: CSS-Grid
 ### :white_check_mark: CSS-Flexbox
-### :white_check_mark: Градиентов
-### :white_check_mark: Теней
-### :white_check_mark: Текста
-### :white_check_mark: Фильтров изображений
+### :white_check_mark: Gradients
+### :white_check_mark: Shadows
+### :white_check_mark: Text
+### :white_check_mark: Image filters
 
-## [Ссылка](https://varleyelectra.github.io/Vue-Front-Dev-Tools/) на проект.
+## [Project link](https://varleyelectra.github.io/Vue-Front-Dev-Tools/)
 
 ## Project setup
 ```
