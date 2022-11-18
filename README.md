@@ -7,7 +7,7 @@
 ### :white_check_mark: Text
 ### :white_check_mark: Image filters
 
-## [Project link](https://varleyelectra.github.io/Vue-Front-Dev-Tools/)
+## [Project link](https://varleyelectra.github.io/Front-Dev-Tools/)
 
 ## Project setup
 ```
