@@ -9,6 +9,6 @@ module.exports = defineConfig({
     }
   },
   publicPath: process.env.NODE_ENV === 'production'
-      ? '/Vue-Front-Dev-Tools/'
+      ? '/Front-Dev-Tools/'
       : '/'
 })
